@@ -1,0 +1,4337 @@
+@prefix kind: <http://datacenter.app.br/ontology/domain/aeco/kind.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl#> .
+@prefix aeco: <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
+@prefix omg: <https://w3id.org/omg#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl>
+    rdf:type owl:Ontology ;
+    rdfs:label "AECO Geometry Representations"@en ,
+        "Representações Geométricas do AECO"@pt-br .
+
+
+# Kind representations
+# Primitive dimensions below are default/suggested values expressed in metres.
+# -----------------------------------------------------------------------------
+#
+# Each kind has two parallel and independent declarations:
+#   1. VISUAL side  (suffix ...Visual) — subClassOf aeco:VisualRepresentation (crm:E36_Visual_Item)
+#      linked via aeco:isVisualRepresentationOf (subPropertyOf crm:P138_represents).
+#      Restricted here to geometry / visual aspects only.
+#   2. SEMANTIC side (suffix ...IfcBinding) — subClassOf aeco:IfcElementBinding (dul:Description)
+#      linked via aeco:bindsIfcElementFor (owl:inverseOf aeco:hasIfcElementBinding).
+#      Carries the non-visual engineering mapping: IFC element class, predefined type,
+#      material associations, quantity take-off rules and composition relations.
+
+
+# Ralo Sifonado (Floor Trap)
+# -----------------------------------------------------------------------------
+
+:AcrylicRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaDeAcrilico
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaDeAluminio — Telha de chapa de alumínio.
+# -----------------------------------------------------------------------------
+
+
+:AdjacentRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ComodoContiguo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Conduite — Tubo que protege e conduz condutores elétricos.
+# -----------------------------------------------------------------------------
+
+
+:AlcoveVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Alcova
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Alicerce — Fundação ou base da edificação.
+# -----------------------------------------------------------------------------
+
+
+:AluminumRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaDeAluminio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaDeConcreto — Telha de concreto.
+# -----------------------------------------------------------------------------
+
+
+:AnchoredDiaphragmWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CortinaAtirantada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cozinha — Cômodo destinado ao preparo de alimentos.
+# -----------------------------------------------------------------------------
+
+
+:AntechamberVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AnteSala
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Aplique — Luminária fixada em parede.
+# -----------------------------------------------------------------------------
+
+
+:ArchitraveVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Arquitrave
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# AssoalhoDeMadeira — Piso formado por tábuas de madeira.
+# -----------------------------------------------------------------------------
+
+
+:AsphaltShingleVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Shingle
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Soalho — Piso de tábuas de madeira.
+# -----------------------------------------------------------------------------
+
+
+:AtriumVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Atrio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Azulejo — Placa cerâmica vidrada usada no revestimento de paredes.
+# -----------------------------------------------------------------------------
+
+
+:AtticVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Sotao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# StruturalGlazing — Sistema de fachada com vidros colados à estrutura sem caixilho aparente.
+# -----------------------------------------------------------------------------
+
+
+:BalconyVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Varanda
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Verga — Elemento estrutural disposto sobre vãos de portas ou janelas para auxiliar na distribuição de cargas e tensões.
+# -----------------------------------------------------------------------------
+
+
+:BalconyWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:JanelaDeSacada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Kitchenette — Pequena unidade residencial com cozinha integrada.
+# -----------------------------------------------------------------------------
+
+
+:BarrettePileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Estacao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Estacas — Tipo de fundação profunda utilizada para transmitir cargas a camadas resistentes do solo em maior profundidade.
+# -----------------------------------------------------------------------------
+
+
+:BasementVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Porao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PortaDeCorrer — Porta cuja folha desliza lateralmente.
+# -----------------------------------------------------------------------------
+
+
+:BathroomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Banheiro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Banzo — Barra longitudinal superior ou inferior de uma treliça.
+# -----------------------------------------------------------------------------
+
+
+:BathtubVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Banheira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Banheiro — Cômodo destinado à higiene pessoal, com aparelhos sanitários.
+# -----------------------------------------------------------------------------
+
+
+:BattenVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Ripa
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# RodaMeio — Elemento de acabamento semelhante ao rodapé, situado aproximadamente à meia altura da parede.
+# -----------------------------------------------------------------------------
+
+
+:BayWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BayWindow
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BlocoDeFundacao — Elemento de concreto que transmite às estacas as cargas dos pilares.
+# -----------------------------------------------------------------------------
+
+
+:BeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Viga
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# VigaDeTravamento — Viga que liga elementos de fundação.
+# -----------------------------------------------------------------------------
+
+
+:BedVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cama
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Cadeira de Escritório (Office Chair)
+# -----------------------------------------------------------------------------
+
+
+:BedroomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Dormitorio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# DryWall — Parede executada com placas de gesso acartonado sobre estrutura metálica.
+# -----------------------------------------------------------------------------
+
+
+:BlindVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Persiana
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Pia — Cuba com torneira para lavagem.
+# -----------------------------------------------------------------------------
+
+
+:BondBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cinta
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cisterna — Reservatório, geralmente enterrado, para armazenamento de água.
+# -----------------------------------------------------------------------------
+
+
+:BoredAugerPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaBroca
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaDeConcretoPreMoldada — Estaca de concreto fabricada previamente e cravada no solo.
+# -----------------------------------------------------------------------------
+
+
+:BoredPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaEscavada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaFlutuante — Estaca que transmite a carga principalmente por atrito lateral.
+# -----------------------------------------------------------------------------
+
+
+:BracingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Contraventamento
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Contraverga — Peça estrutural sob o peitoril de janelas que distribui tensões na alvenaria.
+# -----------------------------------------------------------------------------
+
+
+:ButtressedRetainingWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeContrafortes
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeFlexao — Muro de contenção em balanço que resiste por flexão.
+# -----------------------------------------------------------------------------
+
+
+:CableConduitVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Conduite
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Condutor — Tubo vertical que conduz as águas pluviais da calha ao solo.
+# -----------------------------------------------------------------------------
+
+
+:CanopyVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Marquise
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MaximAir — Janela com folha que se projeta para fora girando em torno de eixo horizontal superior.
+# -----------------------------------------------------------------------------
+
+
+:CantileverRetainingWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeFlexao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeGabiao — Muro de contenção formado por gaiolas metálicas preenchidas com pedras.
+# -----------------------------------------------------------------------------
+
+
+:CarpetVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Carpete
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# CarpeteDeMadeira — Revestimento de piso em réguas finas de madeira.
+# -----------------------------------------------------------------------------
+
+
+:CeilingLiningVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Forro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroDeGessoAcartonado — Forro de placas de gesso acartonado.
+# -----------------------------------------------------------------------------
+
+
+:CeilingSurfaceVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Teto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TuboDeAguaFria — Tubo para condução de água fria.
+# -----------------------------------------------------------------------------
+
+
+:CentrifugalPumpVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BombaCentrifuga
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BombaHidraulica — Equipamento que movimenta ou pressuriza água em uma instalação.
+# -----------------------------------------------------------------------------
+
+
+:CeramicFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoCeramico
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoCimentado — Piso com acabamento de argamassa de cimento.
+# -----------------------------------------------------------------------------
+
+
+:ChimneyVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Chamine
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Chapa — Estrutura laminar sujeita a esforços em seu plano.
+# -----------------------------------------------------------------------------
+
+
+:ChordVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Banzo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Barrado — Faixa de revestimento na parte inferior de uma parede.
+# -----------------------------------------------------------------------------
+
+
+:CircuitBreakerVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Disjuntor
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Divisoria — Parede leve de separação de ambientes.
+# -----------------------------------------------------------------------------
+
+
+:ClapboardSidingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ClapboardSiding
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Claraboia — Abertura envidraçada na cobertura para iluminação natural.
+# -----------------------------------------------------------------------------
+
+
+:ClayRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaCeramica
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaDeAcrilico — Telha de acrílico translúcido.
+# -----------------------------------------------------------------------------
+
+
+:ColdWaterPipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TuboDeAguaFria
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# TuboDeEsgoto — Tubo para condução de esgoto.
+# -----------------------------------------------------------------------------
+
+
+:ColumnVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Pilar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Pilastra — Pilar embutido na parede, com uma face saliente.
+# -----------------------------------------------------------------------------
+
+
+:ConcreteBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:VigaDeConcreto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Cama (Bed)
+# -----------------------------------------------------------------------------
+
+
+:ConcretePadFootingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:SapataDeConcreto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Telhado (Roof)
+# -----------------------------------------------------------------------------
+
+
+:ConcreteRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaDeConcreto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaDeVidro — Telha de vidro para iluminação.
+# -----------------------------------------------------------------------------
+
+
+:ContainmentWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeContencao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeContrafortes — Muro de contenção reforçado por contrafortes.
+# -----------------------------------------------------------------------------
+
+
+:ContinuousFlightAugerPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaHeliceContinua
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaInteira — Estaca executada em peça única, sem emendas.
+# -----------------------------------------------------------------------------
+
+
+:CorniceVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cimalha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cinta — Viga que amarra paredes de alvenaria.
+# -----------------------------------------------------------------------------
+
+
+:CorniceMoldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:RodaTeto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Rodape — Elemento situado na junção das paredes com o piso, destinado à proteção da parede e ao acabamento.
+# -----------------------------------------------------------------------------
+
+
+:CorniceMouldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cornija
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Corredor — Espaço de circulação que liga cômodos.
+# -----------------------------------------------------------------------------
+
+
+:CorridorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Corredor
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Corrimao — Barra de apoio para as mãos ao longo de escadas e rampas.
+# -----------------------------------------------------------------------------
+
+
+:CoveLightingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Sanca
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Sapata — Elemento de fundação superficial que distribui ao solo cargas provenientes de pilares ou paredes.
+# -----------------------------------------------------------------------------
+
+
+:CurtainWallFacadeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:FachadaCortina
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Filete — Moldura estreita e delgada usada como arremate ou ornamento.
+# -----------------------------------------------------------------------------
+
+
+:DadoPanelVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Lambril
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Lavabo — Pequeno banheiro social, sem chuveiro.
+# -----------------------------------------------------------------------------
+
+
+:DadoRailVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:RodaMeio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# RodaTeto — Elemento de acabamento semelhante ao rodapé, situado na junção do teto com as paredes.
+# -----------------------------------------------------------------------------
+
+
+:DiaphragmWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ParedeDiafragma
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ParedeEstrutural — Parede que suporta cargas da estrutura.
+# -----------------------------------------------------------------------------
+
+
+:DiningRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:SalaDeJantar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Sanca — Moldura ou rebaixo de forro junto às paredes, frequentemente com iluminação embutida.
+# -----------------------------------------------------------------------------
+
+
+:DomeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cupula
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowSpherical3DRepresentation
+        ] .
+
+
+# Desvao — Espaço entre o forro e o telhado.
+# -----------------------------------------------------------------------------
+
+
+:DomeRoofVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Domo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowSpherical3DRepresentation
+        ] .
+
+
+# Dormer — Estrutura saliente do telhado que abriga uma janela.
+# -----------------------------------------------------------------------------
+
+
+:DoorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Porta
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Sapata de Concreto (Concrete Pad Footing)
+# -----------------------------------------------------------------------------
+
+
+:DoorFrameArchitraveVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:GuarnicaoDePorta
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# HallDeEntrada — Espaço do edifício situado junto à entrada e que dá acesso aos demais ambientes.
+# -----------------------------------------------------------------------------
+
+
+:DoorFrameMoldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Guarnicao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# GuarnicaoDePorta — Moldura que arremata o encontro do marco da porta com a parede.
+# -----------------------------------------------------------------------------
+
+
+:DormerWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Dormer
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Dormitorio — Cômodo destinado ao repouso.
+# -----------------------------------------------------------------------------
+
+
+:DowelPinVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cavilha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# Chamine — Conduto vertical que expele fumaça e gases para o exterior.
+# -----------------------------------------------------------------------------
+
+
+:DownspoutVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Condutor
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# ContencaoDefinitiva — Estrutura permanente de contenção de solo.
+# -----------------------------------------------------------------------------
+
+
+:DrywallPartitionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ParedeDeGessoAcartonado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ParedeDiafragma — Parede de concreto moldada no solo para contenção.
+# -----------------------------------------------------------------------------
+
+
+:EarthenwarePipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Manilha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# MaoFrancesa — Peça inclinada que apoia um elemento em balanço.
+# -----------------------------------------------------------------------------
+
+
+:ElectricCableVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cabo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# Caibro — Peça de madeira inclinada que apoia as ripas do telhado.
+# -----------------------------------------------------------------------------
+
+
+:ElectricGeneratorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Gerador
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# GuardaCorpo — Barreira de proteção contra quedas.
+# -----------------------------------------------------------------------------
+
+
+:ElevatorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Elevador
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Empena — Parede lateral de uma edificação, geralmente sem aberturas, que acompanha o caimento do telhado.
+# -----------------------------------------------------------------------------
+
+
+:EntranceHallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:HallDeEntrada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Hidromassagem — Banheira dotada de jatos de água.
+# -----------------------------------------------------------------------------
+
+
+:EntranceHallwayVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Saguao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Sala — Cômodo de uso geral.
+# -----------------------------------------------------------------------------
+
+
+:EscalatorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EscadasRolantes
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Escora — Barra sujeita essencialmente a esforços axiais de compressão ou elemento provisório de sustentação, metálico ou de madeira, disposto sob laj…
+# -----------------------------------------------------------------------------
+
+
+:FiberCementRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaFibrocimento
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaTrapezoidal — Telha metálica de perfil trapezoidal.
+# -----------------------------------------------------------------------------
+
+
+:FiletMoldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Filete
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Forro — Revestimento da face inferior de lajes ou coberturas.
+# -----------------------------------------------------------------------------
+
+
+:FloorCoveringVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Piso
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoCeramico — Piso revestido com placas cerâmicas.
+# -----------------------------------------------------------------------------
+
+
+:FloorTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Ladrilho
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# LadrilhoHidraulico — Placa de cimento prensada e colorida usada em pisos.
+# -----------------------------------------------------------------------------
+
+
+:FloorTrapVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:RaloSifonado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Ralo Seco (Floor Waste)
+# -----------------------------------------------------------------------------
+
+
+:FloorWasteVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:RaloSeco
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Tubo (Pipe)
+# -----------------------------------------------------------------------------
+
+
+:FootingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Sapata
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# SapataCorrida — Sapata contínua sob paredes.
+# -----------------------------------------------------------------------------
+
+
+:FormalLivingRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:SalaDeEstar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# SalaDeJantar — Cômodo destinado às refeições.
+# -----------------------------------------------------------------------------
+
+
+:FoundationVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Alicerce
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Alisar — Guarnição que arremata o encontro entre o marco de portas ou janelas e a parede.
+# -----------------------------------------------------------------------------
+
+
+:FoundationBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Baldrame
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Bandeira — Caixilho fixo ou basculante situado acima de uma porta ou janela.
+# -----------------------------------------------------------------------------
+
+
+:FoundationSlabVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Radier
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Reservatorio — Recipiente para armazenamento de água ou outros fluidos.
+# -----------------------------------------------------------------------------
+
+
+:FrankiPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaFranki
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaHeliceContinua — Estaca moldada no local executada com trado helicoidal contínuo.
+# -----------------------------------------------------------------------------
+
+
+:FreightElevatorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MontaCarga
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeArrimo — Muro que contém maciços de terra.
+# -----------------------------------------------------------------------------
+
+
+:FrictionPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaFlutuante
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaFranki — Estaca moldada no local com base alargada, executada por cravação de tubo.
+# -----------------------------------------------------------------------------
+
+
+:FriezeMoldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Friso
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# FundacaoDireta — Fundação que transmite as cargas ao solo pela base, em pequena profundidade.
+# -----------------------------------------------------------------------------
+
+
+:FullLengthPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaInteira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaIntermediaria — Estaca posicionada entre outras estacas de um conjunto.
+# -----------------------------------------------------------------------------
+
+
+:GabionWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeGabiao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeGravidade — Muro de contenção que resiste pelo peso próprio.
+# -----------------------------------------------------------------------------
+
+
+:GableEndWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Empena
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Escada — Elemento construtivo formado por degraus que liga níveis diferentes.
+# -----------------------------------------------------------------------------
+
+
+:GableWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Oitao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PadFooting — Elemento de fundação superficial que transmite ao solo a carga concentrada de um pilar ou de um pequeno grupo de pilares.
+# -----------------------------------------------------------------------------
+
+
+:GateVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Portao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Privada — Aparelho sanitário para recepção de dejetos (bacia sanitária).
+# -----------------------------------------------------------------------------
+
+
+:GlassCurtainWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PeleDeVidro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Persiana — Dispositivo de lâminas que controla a entrada de luz em janelas.
+# -----------------------------------------------------------------------------
+
+
+:GlassPartitionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:DivisoriaDeVidro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Domo — Cobertura em forma de cúpula.
+# -----------------------------------------------------------------------------
+
+
+:GlassRoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaDeVidro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaFibrocimento — Telha ondulada de fibrocimento.
+# -----------------------------------------------------------------------------
+
+
+:GravityRetainingWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeGravidade
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeSuporte — Estrutura destinada à contenção de terras.
+# -----------------------------------------------------------------------------
+
+
+:GreaseInterceptorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CaixaDeGordura
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# CaixaDeInspecao — Caixa enterrada que permite acesso para inspeção e limpeza de tubulações.
+# -----------------------------------------------------------------------------
+
+
+:GuardrailVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:GuardaCorpo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Guarnicao — Moldura que arremata o encontro de esquadrias com a parede.
+# -----------------------------------------------------------------------------
+
+
+:GypsumCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroDeGessoAcartonado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroDeMadeira — Forro de peças de madeira.
+# -----------------------------------------------------------------------------
+
+
+:HandrailVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Corrimao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# CortinaAtirantada — Parede de contenção ancorada no solo por tirantes.
+# -----------------------------------------------------------------------------
+
+
+:HardwoodFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TabuaCorrida
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Taco — Peça pequena de madeira para pisos.
+# -----------------------------------------------------------------------------
+
+
+:HeadWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeTesta
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Nicho — Reentrância em parede.
+# -----------------------------------------------------------------------------
+
+
+:HomeTheaterRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:HomeTheater
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# JanelaDeSacada — Janela que se estende até o piso e dá acesso a uma sacada.
+# -----------------------------------------------------------------------------
+
+
+:HydraulicPumpVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BombaHidraulica
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Brise — Elemento de proteção solar formado por lâminas instaladas junto a fachadas ou aberturas.
+# -----------------------------------------------------------------------------
+
+
+:HydraulicTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:LadrilhoHidraulico
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Laje — Estrutura bidimensional plana destinada a receber esforços preferencialmente perpendiculares ao seu plano, usada como piso ou cobertura.
+# -----------------------------------------------------------------------------
+
+
+:IndustrialConcreteFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoIndustrialEmConcreto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoVinilico — Piso revestido com material vinílico.
+# -----------------------------------------------------------------------------
+
+
+:InspectionChamberVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CaixaDeInspecao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# CaixaDePassagem — Caixa que abriga derivações e passagens de condutores ou tubulações.
+# -----------------------------------------------------------------------------
+
+
+:IntermediatePileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaIntermediaria
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaPirulito — Tipo de estaca usada em fundações ou contenções.
+# -----------------------------------------------------------------------------
+
+
+:IsolatedWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ParedeSolteira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Parquet — Piso de tacos de madeira dispostos em padrões.
+# -----------------------------------------------------------------------------
+
+
+:JacuzziBathVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Hidromassagem
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# HomeTheater — Ambiente destinado à exibição de filmes e áudio.
+# -----------------------------------------------------------------------------
+
+
+:JalousieWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Gelosia
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Gerador — Equipamento que produz energia elétrica.
+# -----------------------------------------------------------------------------
+
+
+:JoistVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Vigota
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+:JoistBattenVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Barrote
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Basculante — Janela com folha que gira em torno de um eixo horizontal.
+# -----------------------------------------------------------------------------
+
+
+:JunctionBoxVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CaixaDePassagem
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Carpete — Revestimento têxtil de piso.
+# -----------------------------------------------------------------------------
+
+
+:KitchenVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cozinha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cupula — Cobertura em forma de semiesfera.
+# -----------------------------------------------------------------------------
+
+
+:KitchenSinkVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PiaDeCozinha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Pilar — Elemento estrutural de eixo predominantemente vertical submetido essencialmente a esforços axiais.
+# -----------------------------------------------------------------------------
+
+
+:KitchenetteVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Kitchenette
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Ladrao — Tubo extravasor que escoa o excesso de água de um reservatório.
+# -----------------------------------------------------------------------------
+
+
+:KneeBraceVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MaoFrancesa
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Marquise — Cobertura em balanço sobre entradas ou passeios.
+# -----------------------------------------------------------------------------
+
+
+:KneeWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MeiaParede
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MontaCarga — Elevador destinado ao transporte de cargas.
+# -----------------------------------------------------------------------------
+
+
+:LandingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Patamar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PeleDeVidro — Fachada envidraçada contínua sobre estrutura metálica.
+# -----------------------------------------------------------------------------
+
+
+:LaundryRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Lavanderia
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Lavatorio — Aparelho sanitário para lavar as mãos.
+# -----------------------------------------------------------------------------
+
+
+:LavatoryBasinVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Lavatorio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Living — Sala de estar.
+# -----------------------------------------------------------------------------
+
+
+:LintelVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Verga
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Vergalhao — Barra de aço para concreto armado.
+# -----------------------------------------------------------------------------
+
+
+:LivingRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Living
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Longarina — Viga longitudinal principal de uma estrutura.
+# -----------------------------------------------------------------------------
+
+
+:LollipopPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaPirulito
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaRaiz — Estaca escavada de pequeno diâmetro, injetada com argamassa e armada.
+# -----------------------------------------------------------------------------
+
+
+:LongitudinalBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Longarina
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Mainel — Elemento vertical que divide os caixilhos de uma esquadria.
+# -----------------------------------------------------------------------------
+
+
+:MainRoofPlaneVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AguaMestra
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Alcapao — Porta horizontal instalada em piso ou forro para acesso a outro nível.
+# -----------------------------------------------------------------------------
+
+
+:ManholeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PocoDeVisita
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Porao — Espaço sob o pavimento térreo.
+# -----------------------------------------------------------------------------
+
+
+:MdfPartitionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:DivisoriaDeMdf
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# DivisoriaDeVidro — Parede leve de vidro para separação de ambientes.
+# -----------------------------------------------------------------------------
+
+
+:MetalCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroMetalico
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroMineral — Forro de placas de fibra mineral.
+# -----------------------------------------------------------------------------
+
+
+:MineralWoolCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroMineral
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# FossaSeptica — Tanque enterrado que trata o esgoto por decantação e digestão.
+# -----------------------------------------------------------------------------
+
+
+:MoldingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Alisar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Alpendre — Área coberta junto à entrada de uma edificação, aberta lateralmente.
+# -----------------------------------------------------------------------------
+
+
+:MosaicTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Pastilha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Patamar — Plataforma entre lances de escada.
+# -----------------------------------------------------------------------------
+
+
+:MullionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Mainel
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Manilha — Tubo de concreto ou cerâmica para esgoto ou águas pluviais.
+# -----------------------------------------------------------------------------
+
+
+:MushroomSlabVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:LajeCogumelo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Lambril — Faixa inferior das paredes junto ao pavimento, também designada rodapé em determinados usos.
+# -----------------------------------------------------------------------------
+
+
+:NewAdjacentRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:NovoComodoContiguo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Oitao — Parede lateral da edificação, junto à divisa do lote.
+# -----------------------------------------------------------------------------
+
+
+:NewRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:NovoComodo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# NovoComodoContiguo — Novo cômodo situado imediatamente junto a outro, compartilhando com ele uma divisa física, normalmente uma parede.
+# -----------------------------------------------------------------------------
+
+
+:NicheVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Nicho
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# NovoComodo — Cômodo criado por construção, ampliação ou reconfiguração de uma edificação existente.
+# -----------------------------------------------------------------------------
+
+
+:OfficeChairVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CadeiraDeEscritorio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Janela (Window)
+# -----------------------------------------------------------------------------
+
+
+:OfficeDeskVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MesaDeEscritorio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Porta (Door)
+# -----------------------------------------------------------------------------
+
+
+:OpeningVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Abertura
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Adega — Cômodo destinado à guarda e conservação de vinhos.
+# -----------------------------------------------------------------------------
+
+
+:OverflowPipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Ladrao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Ladrilho — Placa de revestimento de piso.
+# -----------------------------------------------------------------------------
+
+
+:PadFootingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PadFooting
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Parede — Elemento vertical de vedação ou divisão de ambientes.
+# -----------------------------------------------------------------------------
+
+
+:ParquetVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Parquet
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Pastilha — Pequena peça de revestimento cerâmico ou de vidro.
+# -----------------------------------------------------------------------------
+
+
+:ParquetBlockVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TacoDeMadeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Telha — Peça de cobertura que protege contra a chuva.
+# -----------------------------------------------------------------------------
+
+
+:PartitionWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Divisoria
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# DivisoriaDeMadeira — Parede leve de madeira para separação de ambientes.
+# -----------------------------------------------------------------------------
+
+
+:PermanentContainmentWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ContencaoDefinitiva
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ContencaoProvisoria — Estrutura temporária de contenção de solo.
+# -----------------------------------------------------------------------------
+
+
+:PilasterVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Pilastra
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Piso — Revestimento da superfície de pavimentos.
+# -----------------------------------------------------------------------------
+
+
+:PileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Estaca
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaBroca — Estaca escavada manualmente com trado, de pequeno diâmetro, moldada no local.
+# -----------------------------------------------------------------------------
+
+
+:PileCapVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BlocoDeFundacao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Boiler — Reservatório térmico para armazenamento de água quente.
+# -----------------------------------------------------------------------------
+
+
+:PileGroupVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Estacas
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# FachadaCortina — Fachada leve não estrutural, geralmente de vidro e perfis metálicos.
+# -----------------------------------------------------------------------------
+
+
+:PipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Tubo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+
+# Viga de Concreto (Concrete Beam)
+# -----------------------------------------------------------------------------
+
+
+:PlasterboardCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroDePlacasDeGesso
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroDePvc — Forro de réguas de PVC.
+# -----------------------------------------------------------------------------
+
+
+:PlasterboardPartitionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Drywall
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Elevador — Equipamento de transporte vertical de pessoas ou cargas.
+# -----------------------------------------------------------------------------
+
+
+:PlateVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Placa
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PocoDeVentilacao — Espaço vertical ou vazio construtivo destinado a promover a ventilação natural de ambientes internos e a renovação do ar.
+# -----------------------------------------------------------------------------
+
+
+:PorchVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Alpendre
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Amarracao — Parte da armadura destinada a transmitir os esforços de uma peça para outra.
+# -----------------------------------------------------------------------------
+
+
+:PowderRoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Lavabo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Lavanderia — Cômodo destinado à lavagem de roupas.
+# -----------------------------------------------------------------------------
+
+
+:PrecastConcretePileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaDeConcretoPreMoldada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# EstacaEscavada — Estaca moldada no local após escavação do solo.
+# -----------------------------------------------------------------------------
+
+
+:PumpVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Bomba
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BombaAspirante — Bomba que eleva líquidos por sucção.
+# -----------------------------------------------------------------------------
+
+
+:PurlinVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Terca
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Teto — Face inferior da cobertura ou laje de um ambiente.
+# -----------------------------------------------------------------------------
+
+
+:PvcCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroDePvc
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroMetalico — Forro de placas ou réguas metálicas.
+# -----------------------------------------------------------------------------
+
+
+:RafterVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Caibro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# CaixaDAgua — Reservatório para armazenamento de água da edificação.
+# -----------------------------------------------------------------------------
+
+
+:RafterBattenVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Vara
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Varanda — Área coberta aberta junto à edificação.
+# -----------------------------------------------------------------------------
+
+
+:RafterPlateVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Frechal
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Friso — Faixa ou moldura decorativa horizontal.
+# -----------------------------------------------------------------------------
+
+
+:RaisedFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoElevado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoEmborrachado — Piso revestido com borracha.
+# -----------------------------------------------------------------------------
+
+
+:RebarVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Vergalhao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# Viga — Elemento estrutural de eixo predominantemente horizontal submetido essencialmente à flexão.
+# -----------------------------------------------------------------------------
+
+
+:RetainingWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeArrimo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeContencao — Muro que contém maciços de terra.
+# -----------------------------------------------------------------------------
+
+
+:RoofVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Telhado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+#################################################################
+# Bulk: 228 remaining kinds from kind_geometric_representation_mapping_100pct.csv
+#################################################################
+
+# Abertura — Vão executado em um elemento construtivo, como parede ou laje, para passagem, iluminação ou ventilação.
+# -----------------------------------------------------------------------------
+
+
+:RoofDormerSpaceVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AguaFurtada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# AguaMestra — Água principal de um telhado, de maior extensão.
+# -----------------------------------------------------------------------------
+
+
+:RoofPlaneVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AguaDoTelhado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# AguaFurtada — Vão entre as tesouras do telhado, semelhante a um sótão, com janelas que se abrem em um volume para fora do telhado.
+# -----------------------------------------------------------------------------
+
+
+:RoofSlopeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AguaDeUmaCobertura
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# AguaDoTelhado — Plano inclinado de um telhado.
+# -----------------------------------------------------------------------------
+
+
+:RoofTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Telha
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaCeramica — Telha de argila cozida.
+# -----------------------------------------------------------------------------
+
+
+:RoofVoidVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Desvao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Disjuntor — Dispositivo que interrompe o circuito elétrico em caso de sobrecarga ou curto-circuito.
+# -----------------------------------------------------------------------------
+
+
+:RoomVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Sala
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# SalaDeEstar — Cômodo de convivência.
+# -----------------------------------------------------------------------------
+
+
+:RootPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaRaiz
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# EstacaStrauss — Estaca moldada no local executada com tubo de revestimento e soquete.
+# -----------------------------------------------------------------------------
+
+
+:RubberFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoEmborrachado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoIndustrialEmConcreto — Piso de concreto para uso industrial com alta resistência.
+# -----------------------------------------------------------------------------
+
+
+:SandwichTrapezoidalRoofPanelVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaTrapezoidalSanduiche
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Terca — Elemento da cobertura que liga tesouras e apoia elementos secundários do telhado.
+# -----------------------------------------------------------------------------
+
+
+:ScreedFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoCimentado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PisoElevado — Piso sobre suportes que cria espaço para instalações.
+# -----------------------------------------------------------------------------
+
+
+:SepticTankVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:FossaSeptica
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Frechal — Viga de madeira sobre a parede que recebe a estrutura do telhado.
+# -----------------------------------------------------------------------------
+
+
+:ServiceShaftVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Shaft
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Shingle — Telha asfáltica.
+# -----------------------------------------------------------------------------
+
+
+:SewagePipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TuboDeEsgoto
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Vara — Elemento da cobertura disposto sobre as terças e perpendicularmente a elas.
+# -----------------------------------------------------------------------------
+
+
+:ShallowFoundationVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:FundacaoDireta
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Gelosia — Grade de ripas cruzadas que protege janelas.
+# -----------------------------------------------------------------------------
+
+
+:ShowerHeadVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Chuveiro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# Cimalha — Moldura saliente que arremata o topo de uma parede ou fachada.
+# -----------------------------------------------------------------------------
+
+
+:SillBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Contraverga
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cornija — Moldura saliente que coroa uma fachada ou parede.
+# -----------------------------------------------------------------------------
+
+
+:SinkVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Pia
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# PiaDeCozinha — Cuba de cozinha para lavagem de utensílios.
+# -----------------------------------------------------------------------------
+
+
+:SkirtingBoardVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Rodape
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Saguao — Espaço de entrada e circulação.
+# -----------------------------------------------------------------------------
+
+
+:SkylightVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Claraboia
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Closet — Pequeno cômodo destinado à guarda de roupas.
+# -----------------------------------------------------------------------------
+
+
+:SlabVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Laje
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# LajeCogumelo — Laje apoiada diretamente sobre pilares, sem vigas.
+# -----------------------------------------------------------------------------
+
+
+:SlatVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Sarrafo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Shaft — Espaço vertical para passagem de instalações.
+# -----------------------------------------------------------------------------
+
+
+:SlidingDoorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PortaDeCorrer
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Portao — Porta de acesso a terrenos ou garagens.
+# -----------------------------------------------------------------------------
+
+
+:SolarCollectorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ColetorDeEnergiaSolar
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ComodoContiguo — Cômodo situado imediatamente junto a outro, compartilhando com ele uma divisa física, normalmente uma parede, sem que seja necessária a exis…
+# -----------------------------------------------------------------------------
+
+
+:SolariumVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Solario
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Sotao — Espaço entre o forro do último pavimento e o telhado.
+# -----------------------------------------------------------------------------
+
+
+:StairVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Escada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# EscadasRolantes — Escada mecânica de degraus móveis para transporte de pessoas.
+# -----------------------------------------------------------------------------
+
+
+:StaircaseEnclosureVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CaixaDeEscada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# CaixaDeGordura — Caixa que retém gorduras do esgoto de cozinhas antes do lançamento na rede.
+# -----------------------------------------------------------------------------
+
+
+:SteelPlateVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Chapa
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Chuveiro — Aparelho que distribui água em jato para banho.
+# -----------------------------------------------------------------------------
+
+
+:StorageTankVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Reservatorio
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# Respiro — Tubo de ventilação da instalação de esgoto.
+# -----------------------------------------------------------------------------
+
+
+:StraussPileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:EstacaStrauss
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# Estacao — Estaca escavada de seção retangular (estaca barrete).
+# -----------------------------------------------------------------------------
+
+
+:StripFootingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:SapataCorrida
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Sarrafo — Peça fina e estreita de madeira.
+# -----------------------------------------------------------------------------
+
+
+:StructuralGlazingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:StruturalGlazing
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TabuaCorrida — Piso de tábuas longas de madeira.
+# -----------------------------------------------------------------------------
+
+
+:StructuralWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ParedeEstrutural
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ParedeSolteira — Parede isolada, sem ligação com outras.
+# -----------------------------------------------------------------------------
+
+
+:StrutVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Escora
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Estaca — Elemento de fundação profunda, esbelto, que transmite cargas ao solo.
+# -----------------------------------------------------------------------------
+
+
+:SuctionPumpVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BombaAspirante
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BombaCentrifuga — Bomba que movimenta líquidos pela ação da força centrífuga de um rotor.
+# -----------------------------------------------------------------------------
+
+
+:SunscreenVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Brise
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cabo — Condutor elétrico formado por um ou mais fios isolados.
+# -----------------------------------------------------------------------------
+
+
+:SupportWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MuroDeSuporte
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MuroDeTesta — Muro na extremidade de bueiros ou galerias que contém o aterro.
+# -----------------------------------------------------------------------------
+
+
+:TemporaryContainmentWallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ContencaoProvisoria
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Contrafrechal — Peça horizontal que reforça ou complementa o frechal.
+# -----------------------------------------------------------------------------
+
+
+:TieBarVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Amarracao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidCylindrical3DRepresentation
+        ] .
+
+
+# AnteSala — Cômodo que antecede uma sala principal.
+# -----------------------------------------------------------------------------
+
+
+:TieBeamVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:VigaDeTravamento
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Vigota — Viga de pequena seção transversal, frequentemente pré-moldada ou protendida.
+# -----------------------------------------------------------------------------
+
+
+:TiltTurnWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Basculante
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BayWindow — Janela que se projeta para fora do plano da fachada.
+# -----------------------------------------------------------------------------
+
+
+:TimberFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Soalho
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Solario — Espaço destinado a banhos de sol.
+# -----------------------------------------------------------------------------
+
+
+:ToiletBowlVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Privada
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Radier — Fundação em laje contínua sobre o solo.
+# -----------------------------------------------------------------------------
+
+
+:ToiletPanVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:BaciaSanitaria
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Baldrame — Tipo de fundação para pequenas edificações, constituída por uma viga de alvenaria, concreto simples ou concreto armado, construída diretamen…
+# -----------------------------------------------------------------------------
+
+
+:TopHungWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:MaximAir
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# MeiaParede — Parede de altura parcial.
+# -----------------------------------------------------------------------------
+
+
+:TransomWindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Bandeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Banheira — Aparelho sanitário para banho de imersão.
+# -----------------------------------------------------------------------------
+
+
+:TrapDoorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Alcapao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Alcova — Pequeno cômodo ou recesso, geralmente destinado ao repouso.
+# -----------------------------------------------------------------------------
+
+
+:TrapezoidalRoofPanelVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:TelhaTrapezoidal
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TelhaTrapezoidalSanduiche — Telha trapezoidal com isolante entre duas chapas.
+# -----------------------------------------------------------------------------
+
+
+:UndergroundWaterTankVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Cisterna
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# ClapboardSiding — Revestimento de fachada em tábuas horizontais sobrepostas.
+# -----------------------------------------------------------------------------
+
+
+:UnderlaymentVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Contrapiso
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Contraventamento — Peças que travam uma estrutura contra esforços laterais.
+# -----------------------------------------------------------------------------
+
+
+:VentPipeVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Respiro
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Revestimento — Camada aplicada sobre superfícies para proteção e acabamento.
+# -----------------------------------------------------------------------------
+
+
+:VentilationShaftVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PocoDeVentilacao
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# PocoDeVisita — Câmara que dá acesso a redes subterrâneas para inspeção e manutenção.
+# -----------------------------------------------------------------------------
+
+
+:VinylFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:PisoVinilico
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Placa — Estrutura bidimensional plana disposta verticalmente e destinada a receber esforços predominantemente em seu plano.
+# -----------------------------------------------------------------------------
+
+
+:WainscotPanelingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Boiserie
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Bomba — Equipamento que movimenta fluidos.
+# -----------------------------------------------------------------------------
+
+
+:WainscotingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Barrado
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:xLength ;
+            owl:hasValue "0.15"^^xsd:double
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:yLength ;
+            owl:hasValue "0.15"^^xsd:double
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:zLength ;
+            owl:hasValue "0.10"^^xsd:double
+        ] .
+
+
+# Barrote — Elemento prismático de madeira usado em construção civil.
+# -----------------------------------------------------------------------------
+
+
+:WalkInClosetVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Closet
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:xLength ;
+            owl:hasValue "0.10"^^xsd:double
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:yLength ;
+            owl:hasValue "0.10"^^xsd:double
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:zLength ;
+            owl:hasValue "0.05"^^xsd:double
+        ] .
+
+
+# ColetorDeEnergiaSolar — Equipamento que capta a energia solar para aquecimento de água.
+# -----------------------------------------------------------------------------
+
+
+:WallVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Parede
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ParedeDeGessoAcartonado — Parede de placas de gesso acartonado sobre estrutura metálica.
+# -----------------------------------------------------------------------------
+
+
+:WallCladdingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Revestimento
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Ripa — Elemento da cobertura colocado sobre as varas ou caibros e destinado a apoiar as telhas.
+# -----------------------------------------------------------------------------
+
+
+:WallLampVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Aplique
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Arquitrave — Viga horizontal apoiada sobre colunas, parte inferior do entablamento.
+# -----------------------------------------------------------------------------
+
+
+:WallTileVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Azulejo
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# BaciaSanitaria — Aparelho sanitário para recepção de dejetos, com descarga de água.
+# -----------------------------------------------------------------------------
+
+
+:WaterHeaterVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Boiler
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowCylindrical3DRepresentation
+        ] .
+
+
+# Boiserie — Revestimento decorativo de parede em painéis de madeira.
+# -----------------------------------------------------------------------------
+
+
+:WaterTankVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CaixaDAgua
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:HollowBox3DRepresentation
+        ] .
+
+
+# CaixaDeEscada — Espaço vertical que abriga a escada de uma edificação.
+# -----------------------------------------------------------------------------
+
+
+:WindowVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Janela
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+
+# Mesa de Escritório (Office Desk)
+# -----------------------------------------------------------------------------
+
+
+:WineCellarVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Adega
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# AguaDeUmaCobertura — Plano inclinado de um telhado.
+# -----------------------------------------------------------------------------
+
+
+:WoodBlockFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:Taco
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# TacoDeMadeira — Piso de pequenas peças de madeira.
+# -----------------------------------------------------------------------------
+
+
+:WoodCeilingVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:ForroDeMadeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# ForroDePlacasDeGesso — Forro de placas de gesso.
+# -----------------------------------------------------------------------------
+
+
+:WoodFloorVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:AssoalhoDeMadeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Atrio — Espaço de entrada ou pátio interno de uma edificação.
+# -----------------------------------------------------------------------------
+
+
+:WoodParquetVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:CarpeteDeMadeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# Cavilha — Pino de madeira ou metal usado para unir peças.
+# -----------------------------------------------------------------------------
+
+
+:WoodPartitionVisual rdf:type owl:Class ;
+    rdfs:subClassOf aeco:VisualRepresentation ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty aeco:isVisualRepresentationOf ;
+            owl:someValuesFrom kind:DivisoriaDeMadeira
+        ] ,
+        [
+            rdf:type owl:Restriction ;
+            owl:onProperty omg:hasGeometry ;
+            owl:someValuesFrom aeco:SolidBox3DRepresentation
+        ] .
+
+
+# DivisoriaDeMdf — Parede leve de MDF para separação de ambientes.
+# -----------------------------------------------------------------------------

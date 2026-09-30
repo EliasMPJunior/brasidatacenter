@@ -1,0 +1,231 @@
+@prefix : <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix omg: <https://w3id.org/omg#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
+
+<http://datacenter.app.br/ontology/domain/aeco/ns.ttl> rdf:type owl:Ontology ;
+                                                        rdfs:label "AECO Ontology"@en ,
+                                                                   "Ontologia do setor AECO"@pt-br .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/identifier
+dcterms:identifier rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+
+#################################################################
+#    Primitive geometry parameters
+#################################################################
+
+:xLength rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "X length"@en ,
+               "Comprimento X"@pt-br ;
+    skos:definition "Default or suggested extent of a primitive geometry along the X axis, expressed in metres."@en ,
+                    "Extensão padrão ou sugerida de uma geometria primitiva ao longo do eixo X, expressa em metros."@pt-br .
+
+:yLength rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Y length"@en ,
+               "Comprimento Y"@pt-br ;
+    skos:definition "Default or suggested extent of a primitive geometry along the Y axis, expressed in metres."@en ,
+                    "Extensão padrão ou sugerida de uma geometria primitiva ao longo do eixo Y, expressa em metros."@pt-br .
+
+:zLength rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Z length"@en ,
+               "Comprimento Z"@pt-br ;
+    skos:definition "Default or suggested extent of a primitive geometry along the Z axis, expressed in metres."@en ,
+                    "Extensão padrão ou sugerida de uma geometria primitiva ao longo do eixo Z, expressa em metros."@pt-br .
+
+:radius rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Radius"@en ,
+               "Raio"@pt-br ;
+    skos:definition "Default or suggested radius of a primitive geometry, expressed in metres."@en ,
+                    "Raio padrão ou sugerido de uma geometria primitiva, expresso em metros."@pt-br .
+
+:height rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Height"@en ,
+               "Altura"@pt-br ;
+    skos:definition "Default or suggested height of a primitive geometry, expressed in metres."@en ,
+                    "Altura padrão ou sugerida de uma geometria primitiva, expressa em metros."@pt-br .
+
+:directionX rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Direction X"@en ,
+               "Direção X"@pt-br ;
+    skos:definition "X component of a direction vector."@en ,
+                    "Componente X de um vetor de direção."@pt-br .
+
+:directionY rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Direction Y"@en ,
+               "Direção Y"@pt-br ;
+    skos:definition "Y component of a direction vector."@en ,
+                    "Componente Y de um vetor de direção."@pt-br .
+
+:directionZ rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:double ;
+    rdfs:label "Direction Z"@en ,
+               "Direção Z"@pt-br ;
+    skos:definition "Z component of a direction vector."@en ,
+                    "Componente Z de um vetor de direção."@pt-br .
+
+#################################################################
+#    Visual representations
+#################################################################
+
+:VisualRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf crm:E36_Visual_Item ;
+    rdfs:label "Visual representation"@en ,
+               "Representação visual"@pt-br .
+
+:isVisualRepresentationOf rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf crm:P138_represents ;
+    rdfs:label "is visual representation of"@en ,
+               "é representação visual de"@pt-br .
+
+:hasVisualRepresentation rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf crm:P138i_has_representation ;
+    rdfs:label "has visual representation"@en ,
+               "tem representação visual"@pt-br .
+
+
+#################################################################
+#    3D representations
+#################################################################
+
+:ModelElement3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf omg:Geometry ;
+    rdfs:label "Model element 3D representation"@en ,
+               "Representação 3D de elemento do modelo"@pt-br .
+
+:SolidPrimitive3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :ModelElement3DRepresentation ;
+    rdfs:label "Solid primitive 3D representation"@en ,
+               "Representação 3D por primitiva sólida"@pt-br .
+
+
+#################################################################
+#    Primitive geometries
+#################################################################
+
+:Box3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :SolidPrimitive3DRepresentation ;
+    rdfs:label "Box geometry"@en ,
+               "Geometria de caixa"@pt-br ;
+    skos:definition "Rectangular box delimited by six rectangular faces."@en ,
+                    "Paralelepípedo retangular delimitado por seis faces retangulares."@pt-br .
+
+:Spherical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :SolidPrimitive3DRepresentation ;
+    rdfs:label "Spherical geometry"@en ,
+               "Geometria esférica"@pt-br ;
+    skos:definition "Sphere defined by its center and radius."@en ,
+                    "Esfera definida pelo centro e pelo raio."@pt-br .
+
+:Cylindrical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :SolidPrimitive3DRepresentation ;
+    rdfs:label "Cylindrical geometry"@en ,
+               "Geometria cilíndrica"@pt-br ;
+    skos:definition "Right circular cylinder defined by its radius and height."@en ,
+                    "Cilindro circular reto definido pelo raio e pela altura."@pt-br .
+
+
+#################################################################
+#    Solid and hollow variants
+#################################################################
+
+:SolidBox3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Box3DRepresentation ;
+    rdfs:label "Solid box"@en ,
+               "Caixa maciça"@pt-br ;
+    skos:definition "Box whose whole volume is filled with material."@en ,
+                    "Caixa cujo volume é inteiramente preenchido por material."@pt-br .
+
+:HollowBox3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Box3DRepresentation ;
+    rdfs:label "Hollow box"@en ,
+               "Caixa oca"@pt-br ;
+    skos:definition "Box whose material is limited to a boundary wall of given thickness around an empty interior."@en ,
+                    "Caixa cujo material se limita a uma parede de fronteira com espessura, em torno de um interior vazio."@pt-br .
+
+:SolidSpherical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Spherical3DRepresentation ;
+    rdfs:label "Solid sphere"@en ,
+               "Esfera maciça"@pt-br ;
+    skos:definition "Sphere whose whole volume is filled with material."@en ,
+                    "Esfera cujo volume é inteiramente preenchido por material."@pt-br .
+
+:HollowSpherical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Spherical3DRepresentation ;
+    rdfs:label "Hollow sphere"@en ,
+               "Esfera oca"@pt-br ;
+    skos:definition "Sphere whose material is limited to a boundary wall of given thickness around an empty interior."@en ,
+                    "Esfera cujo material se limita a uma parede de fronteira com espessura, em torno de um interior vazio."@pt-br .
+
+:SolidCylindrical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Cylindrical3DRepresentation ;
+    rdfs:label "Solid cylinder"@en ,
+               "Cilindro maciço"@pt-br ;
+    skos:definition "Cylinder whose whole volume is filled with material."@en ,
+                    "Cilindro cujo volume é inteiramente preenchido por material."@pt-br .
+
+:HollowCylindrical3DRepresentation rdf:type owl:Class ;
+    rdfs:subClassOf :Cylindrical3DRepresentation ;
+    rdfs:label "Hollow cylinder"@en ,
+               "Cilindro oco"@pt-br ;
+    skos:definition "Cylinder whose material is limited to a boundary wall of given thickness around an empty interior, as in a pipe."@en ,
+                    "Cilindro cujo material se limita a uma parede de fronteira com espessura, em torno de um interior vazio, como em um tubo."@pt-br .
+
+
+#################################################################
+#    IFC element bindings (DUL-based, non-visual semantics)
+#################################################################
+
+:IfcElementBinding rdf:type owl:Class ;
+    rdfs:subClassOf dul:Description ;
+    rdfs:label "IFC element binding"@en ,
+               "Vinculação de elemento IFC"@pt-br ;
+    skos:definition "Declarative mapping from an AECO domain kind to an IFC4/FINAL element type, including non-visual engineering attributes such as predefined type, material associations, quantity take-off rules and composition relationships. Classified as a DUL Description because it is a conceptual specification (blueprint) of a kind, not a visual item."@en ,
+                    "Mapeamento declarativo de um kind do domínio AECO para um tipo de elemento IFC4/FINAL, incluindo atributos de engenharia não visuais como tipo predefinido, associações de material, regras de levantamento quantitativo e relações de composição. Classificado como DUL Description por ser uma especificação conceitual (blueprint) de um kind, não um item visual."@pt-br .
+
+:bindsIfcElementFor rdf:type owl:ObjectProperty ;
+    rdfs:domain :IfcElementBinding ;
+    rdfs:label "binds IFC element for"@en ,
+               "vincula elemento IFC para"@pt-br ;
+    owl:inverseOf :hasIfcElementBinding ;
+    skos:definition "Links an IfcElementBinding (the DUL Description) to the AECO kind that it semantically binds to an IFC element type. Not a visual relation: no subPropertyOf crm:P138_represents."@en ,
+                    "Liga um IfcElementBinding (a Description DUL) ao kind do AECO que ele semanticamente vincula a um tipo de elemento IFC. Não é uma relação visual: não há subPropertyOf crm:P138_represents."@pt-br .
+
+:hasIfcElementBinding rdf:type owl:ObjectProperty ;
+    rdfs:range :IfcElementBinding ;
+    rdfs:label "has IFC element binding"@en ,
+               "tem vinculação de elemento IFC"@pt-br ;
+    skos:definition "Links an AECO kind to the declarative IFC element binding (DUL Description) that specifies its IFC element type, predefined type, material associations and other non-visual engineering attributes."@en ,
+                    "Liga um kind do AECO à vinculação declarativa de elemento IFC (DUL Description) que especifica seu tipo de elemento IFC, tipo predefinido, associações de material e demais atributos de engenharia não visuais."@pt-br .

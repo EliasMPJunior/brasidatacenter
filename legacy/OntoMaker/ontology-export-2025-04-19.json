@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "label": "rdfs:label",
+    "comment": "rdfs:comment",
+    "domain": "rdfs:domain",
+    "range": "rdfs:range"
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org/entity/entity-1745039010820",
+      "@type": "owl:Class",
+      "label": [
+        { "@value": "Black Sabbath", "@language": "pt-br" },
+        { "@value": "Black Sabbath", "@language": "en" }
+      ],
+      "comment": [
+        { "@value": "", "@language": "pt-br" },
+        { "@value": "", "@language": "en" }
+      ]
+    },
+    {
+      "@id": "http://example.org/entity/entity-1745039022616",
+      "@type": "owl:Class",
+      "label": [
+        { "@value": "Ozzy", "@language": "pt-br" },
+        { "@value": "Ozzy", "@language": "en" }
+      ],
+      "comment": [
+        { "@value": "", "@language": "pt-br" },
+        { "@value": "", "@language": "en" }
+      ]
+    },
+    {
+      "@id": "http://example.org/entity/entity-1745039035869",
+      "@type": "owl:Class",
+      "label": [
+        { "@value": "Tommy", "@language": "pt-br" },
+        { "@value": "Tommy", "@language": "en" }
+      ],
+      "comment": [
+        { "@value": "", "@language": "pt-br" },
+        { "@value": "", "@language": "en" }
+      ]
+    },
+    {
+      "@id": "http://example.org/entity/entity-1745039060084",
+      "@type": "owl:Class",
+      "label": [
+        { "@value": "Zack", "@language": "pt-br" },
+        { "@value": "Zack", "@language": "en" }
+      ],
+      "comment": [
+        { "@value": "", "@language": "pt-br" },
+        { "@value": "", "@language": "en" }
+      ]
+    },
+    {
+      "@id": "http://example.org/relation/edge-1745039046467",
+      "@type": "owl:ObjectProperty",
+      "label": [
+        { "@value": "has_property", "@language": "pt-br" },
+        { "@value": "has_property", "@language": "en" }
+      ],
+      "domain": { "@id": "http://example.org/entity/entity-1745039035869" },
+      "range": { "@id": "http://example.org/entity/entity-1745039010820" }
+    },
+    {
+      "@id": "http://example.org/relation/edge-1745039049267",
+      "@type": "owl:ObjectProperty",
+      "label": [
+        { "@value": "has_property", "@language": "pt-br" },
+        { "@value": "has_property", "@language": "en" }
+      ],
+      "domain": { "@id": "http://example.org/entity/entity-1745039010820" },
+      "range": { "@id": "http://example.org/entity/entity-1745039022616" }
+    },
+    {
+      "@id": "http://example.org/relation/edge-1745039089651",
+      "@type": "owl:ObjectProperty",
+      "label": [
+        { "@value": "has_property", "@language": "pt-br" },
+        { "@value": "has_property", "@language": "en" }
+      ],
+      "domain": { "@id": "http://example.org/entity/entity-1745039022616" },
+      "range": { "@id": "http://example.org/entity/entity-1745039060084" }
+    }
+  ]
+}
