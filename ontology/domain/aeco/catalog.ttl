@@ -31,7 +31,8 @@
         <http://datacenter.app.br/ontology/domain/aeco/kind.ttl> ,
         <http://datacenter.app.br/ontology/domain/aeco/material.ttl> ,
         <http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl> .
+        <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/representation/encoding.ttl> .
 
 
 # Internal ontologies — AECO domain
@@ -41,8 +42,8 @@
     rdf:type owl:Ontology ;
     rdfs:label "AECO Core Schema"@en ,
         "Esquema Central do AECO"@pt-br ;
-    rdfs:comment "Core TBox: annotation properties, datatype properties (xLength/yLength/zLength), object properties (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), taxonomy roots (Kind, VisualRepresentation, IfcElementBinding) and geometry primitive classes."@en ,
-        "TBox central: propriedades de anotação, propriedades de datatype (xLength/yLength/zLength), propriedades de objeto (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), raízes da taxonomia (Kind, VisualRepresentation, IfcElementBinding) e classes de primitivas geométricas."@pt-br .
+    rdfs:comment "Core TBox: annotation properties, datatype properties (xLength/yLength/zLength), object properties (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), taxonomy roots (Kind, VisualRepresentation, IfcElementBinding), geometry primitive classes and file encodings (FileEncoding, fileExtension, mediaType)."@en ,
+        "TBox central: propriedades de anotação, propriedades de datatype (xLength/yLength/zLength), propriedades de objeto (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), raízes da taxonomia (Kind, VisualRepresentation, IfcElementBinding), classes de primitivas geométricas e codificações de arquivo (FileEncoding, fileExtension, mediaType)."@pt-br .
 
 <http://datacenter.app.br/ontology/domain/aeco/kind.ttl>
     rdf:type owl:Ontology ;
@@ -78,6 +79,14 @@
     owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> ,
         <http://datacenter.app.br/ontology/domain/aeco/kind.ttl> ,
         <http://datacenter.app.br/ontology/domain/aeco/material.ttl> .
+
+<http://datacenter.app.br/ontology/domain/aeco/representation/encoding.ttl>
+    rdf:type owl:Ontology ;
+    rdfs:label "AECO File Encodings"@en ,
+        "Codificações de Arquivo do AECO"@pt-br ;
+    rdfs:comment "File encoding layer: aeco:FileEncoding individuals (IFC STEP physical file, DXF) with the aeco:fileExtension that identifies each one and the aeco:mediaType recorded for its files."@en ,
+        "Camada de codificação de arquivos: indivíduos aeco:FileEncoding (arquivo físico STEP do IFC, DXF) com a aeco:fileExtension que identifica cada um e o aeco:mediaType registrado para seus arquivos."@pt-br ;
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> .
 
 
 # External ontologies — standard vocabularies
