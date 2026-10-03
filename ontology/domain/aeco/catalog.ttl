@@ -1,7 +1,7 @@
 @prefix : <http://datacenter.app.br/ontology/domain/aeco/catalog.ttl#> .
-@prefix aeco: <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
-@prefix aeco_kind: <http://datacenter.app.br/ontology/domain/aeco/kind.ttl#> .
-@prefix aeco_material: <http://datacenter.app.br/ontology/domain/aeco/material.ttl#> .
+@prefix aeco: <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl#> .
+@prefix aeco_kind: <http://datacenter.app.br/ontology/domain/aeco/taxonomy/kind.ttl#> .
+@prefix aeco_material: <http://datacenter.app.br/ontology/domain/aeco/taxonomy/material.ttl#> .
 @prefix aeco_geom_repr: <http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl#> .
 @prefix aeco_ifc_repr: <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl#> .
 
@@ -27,38 +27,39 @@
         "Catálogo de Ontologias do AECO"@pt-br ;
     rdfs:comment "Central registry of every internal and external ontology used across the AECO domain."@en ,
         "Registro central de todas as ontologias internas e externas utilizadas no domínio AECO."@pt-br ;
-    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/kind.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/material.ttl> ,
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/taxonomy/kind.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/taxonomy/material.ttl> ,
         <http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl> .
+        <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/representation/encoding.ttl> .
 
 
 # Internal ontologies — AECO domain
 # ---------------------------------------------------------------
 
-<http://datacenter.app.br/ontology/domain/aeco/ns.ttl>
+<http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl>
     rdf:type owl:Ontology ;
     rdfs:label "AECO Core Schema"@en ,
         "Esquema Central do AECO"@pt-br ;
-    rdfs:comment "Core TBox: annotation properties, datatype properties (xLength/yLength/zLength), object properties (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), taxonomy roots (Kind, VisualRepresentation, IfcElementBinding) and geometry primitive classes."@en ,
-        "TBox central: propriedades de anotação, propriedades de datatype (xLength/yLength/zLength), propriedades de objeto (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), raízes da taxonomia (Kind, VisualRepresentation, IfcElementBinding) e classes de primitivas geométricas."@pt-br .
+    rdfs:comment "Core TBox: annotation properties, datatype properties (xLength/yLength/zLength), object properties (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), taxonomy roots (Kind, VisualRepresentation, IfcElementBinding), geometry primitive classes and file encodings (FileEncoding, fileExtension, mediaType)."@en ,
+        "TBox central: propriedades de anotação, propriedades de datatype (xLength/yLength/zLength), propriedades de objeto (isVisualRepresentationOf, bindsIfcElementFor, hasIfcElementBinding, hasGeometry), raízes da taxonomia (Kind, VisualRepresentation, IfcElementBinding), classes de primitivas geométricas e codificações de arquivo (FileEncoding, fileExtension, mediaType)."@pt-br .
 
-<http://datacenter.app.br/ontology/domain/aeco/kind.ttl>
+<http://datacenter.app.br/ontology/domain/aeco/taxonomy/kind.ttl>
     rdf:type owl:Ontology ;
     rdfs:label "AECO Kind Taxonomy"@en ,
         "Taxonomia de Tipos do AECO"@pt-br ;
     rdfs:comment "Taxonomy TBox: every Kind subclass (Parede, Viga, Coluna, Telha, Janela, Porta etc.) with multilingual labels and definitions via SKOS/DCTERMS annotation properties."@en ,
         "TBox de taxonomia: toda a hierarquia de subclasses de Kind (Parede, Viga, Coluna, Telha, Janela, Porta etc.) com rótulos multilíngues e definições via propriedades de anotação SKOS/DCTERMS."@pt-br ;
-    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> .
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> .
 
-<http://datacenter.app.br/ontology/domain/aeco/material.ttl>
+<http://datacenter.app.br/ontology/domain/aeco/taxonomy/material.ttl>
     rdf:type owl:Ontology ;
     rdfs:label "AECO Material Taxonomy"@en ,
         "Taxonomia de Materiais do AECO"@pt-br ;
     rdfs:comment "Material taxonomy: classification and hierarchical relationships between building materials (Concreto, Madeira, Aço, Vidro etc.)."@en ,
         "Taxonomia de materiais: classificação e relações hierárquicas entre materiais de construção (Concreto, Madeira, Aço, Vidro etc.)."@pt-br ;
-    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> .
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> .
 
 <http://datacenter.app.br/ontology/domain/aeco/representation/geometry.ttl>
     rdf:type owl:Ontology ;
@@ -66,8 +67,8 @@
         "Representações Geométricas do AECO"@pt-br ;
     rdfs:comment "Visual representation layer (*Visual classes): subClassOf VisualRepresentation / crm:E36_Visual_Item, with omg:hasGeometry restrictions to primitive geometry (SolidBox3D, HollowCylindrical3D etc.) and default xLength/yLength/zLength datatype values."@en ,
         "Camada de representação visual (classes *Visual): subClassOf VisualRepresentation / crm:E36_Visual_Item, com restrições omg:hasGeometry para primitivas geométricas (SolidBox3D, HollowCylindrical3D etc.) e valores padrão de datatype xLength/yLength/zLength."@pt-br ;
-    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/kind.ttl> .
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/taxonomy/kind.ttl> .
 
 <http://datacenter.app.br/ontology/domain/aeco/representation/bsi_ifc.ttl>
     rdf:type owl:Ontology ;
@@ -75,9 +76,17 @@
         "Vinculações IFC4 do AECO"@pt-br ;
     rdfs:comment "IFC semantic binding layer (*IfcBinding classes): subClassOf IfcElementBinding / dul:Description, with ifc4owl:IfcXxx specialization, predefinedType restrictions, hasMaterialAssociations to IfcRelAssociatesMaterial/IfcMaterial and bindsIfcElementFor restrictions to Kind individuals."@en ,
         "Camada de vinculação semântica IFC (classes *IfcBinding): subClassOf IfcElementBinding / dul:Description, com especialização ifc4owl:IfcXxx, restrições de predefinedType, hasMaterialAssociations para IfcRelAssociatesMaterial/IfcMaterial e restrições bindsIfcElementFor para indivíduos de Kind."@pt-br ;
-    owl:imports <http://datacenter.app.br/ontology/domain/aeco/ns.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/kind.ttl> ,
-        <http://datacenter.app.br/ontology/domain/aeco/material.ttl> .
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/taxonomy/kind.ttl> ,
+        <http://datacenter.app.br/ontology/domain/aeco/taxonomy/material.ttl> .
+
+<http://datacenter.app.br/ontology/domain/aeco/representation/encoding.ttl>
+    rdf:type owl:Ontology ;
+    rdfs:label "AECO File Encodings"@en ,
+        "Codificações de Arquivo do AECO"@pt-br ;
+    rdfs:comment "File encoding layer: aeco:FileEncoding individuals (IFC STEP physical file, DXF) with the aeco:fileExtension that identifies each one and the aeco:mediaType recorded for its files."@en ,
+        "Camada de codificação de arquivos: indivíduos aeco:FileEncoding (arquivo físico STEP do IFC, DXF) com a aeco:fileExtension que identifica cada um e o aeco:mediaType registrado para seus arquivos."@pt-br ;
+    owl:imports <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> .
 
 
 # External ontologies — standard vocabularies

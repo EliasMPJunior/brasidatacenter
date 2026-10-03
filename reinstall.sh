@@ -51,12 +51,14 @@ rm -rf "${SCRIPT_DIR}/src/brasidatacenter.egg-info"
 rm -rf "${SCRIPT_DIR}/src/brasidatacenter/__pycache__"
 
 echo -e "${YELLOW}Reinstalling in editable mode...${RESET}"
-python -c "import hatchling" >/dev/null 2>&1
+# --no-build-isolation builds with this environment's packages: hatchling, and
+# editables for the editable install.
+python -c "import hatchling, editables" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo -e "${RED}✗ Missing build dependency: hatchling${RESET}"
-    echo -e "${YELLOW}This environment does not have hatchling installed, and pip needs it to install this project.${RESET}"
+    echo -e "${RED}✗ Missing build dependency: hatchling or editables${RESET}"
+    echo -e "${YELLOW}This environment lacks hatchling or editables, and pip needs both to install this project in editable mode.${RESET}"
     echo -e "${YELLOW}If you are offline, pip cannot download build dependencies.${RESET}"
-    echo -e "${YELLOW}Fix:${RESET} pip install \"hatchling>=1.27\""
+    echo -e "${YELLOW}Fix:${RESET} pip install \"hatchling>=1.27\" editables"
     exit 1
 fi
 

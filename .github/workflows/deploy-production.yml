@@ -1,0 +1,110 @@
+name: Deploy production repository
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to deploy
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: brasidatacenter-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Replace production content
+    if: >-
+      (github.event_name == 'release' &&
+        (startsWith(github.event.release.tag_name, 'v') ||
+         startsWith(github.event.release.tag_name, 'V'))) ||
+      (github.event_name == 'workflow_dispatch' &&
+        (startsWith(inputs.release_tag, 'v') ||
+         startsWith(inputs.release_tag, 'V')))
+    runs-on: ubuntu-latest
+
+    env:
+      PRODUCTION_REPOSITORY: Brasidata/brasidatacenter
+      PRODUCTION_BRANCH: master
+      DEPLOY_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+
+    steps:
+      - name: Checkout released version
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ env.DEPLOY_TAG }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Confirm deployed release
+        id: release
+        run: |
+          deployed_sha="$(git rev-parse HEAD)"
+          echo "sha=${deployed_sha}" >> "$GITHUB_OUTPUT"
+          echo "Deploying tag: $DEPLOY_TAG"
+          echo "Deploying commit: ${deployed_sha}"
+          echo "Production repository: $PRODUCTION_REPOSITORY"
+
+      - name: Clone production repository
+        env:
+          PRODUCTION_REPO_TOKEN: ${{ secrets.PRODUCTION_REPO_TOKEN }}
+        run: |
+          git clone \
+            --branch "$PRODUCTION_BRANCH" \
+            "https://x-access-token:${PRODUCTION_REPO_TOKEN}@github.com/${PRODUCTION_REPOSITORY}.git" \
+            production
+
+      - name: Replace production content
+        run: |
+          # Whitelist deploy: unlike an exclude-list sync, production must end
+          # up with exactly ontology/, src/brasidatacenter/, README.md,
+          # pyproject.toml and LICENSE (the last two build the published
+          # package) -- nothing else. --delete-excluded removes anything in production
+          # that isn't explicitly included below, so every include needed to
+          # reach a path is listed (the parent directory, then its contents).
+          # Protected, so they survive: .git/ (the production clone itself)
+          # and what only production owns -- .github/ (its PyPI publish
+          # workflow), CNAME (the GitHub Pages domain serving the ontology
+          # IRIs, datacenter.app.br) and .gitignore.
+          rsync -av --delete-excluded \
+            --filter='P /.git/' \
+            --filter='P /.github/' \
+            --filter='P /CNAME' \
+            --filter='P /.gitignore' \
+            --exclude="/production/" \
+            --include="/ontology/" \
+            --include="/ontology/**" \
+            --include="/src/" \
+            --include="/src/brasidatacenter/" \
+            --include="/src/brasidatacenter/**" \
+            --include="/README.md" \
+            --include="/pyproject.toml" \
+            --include="/LICENSE" \
+            --exclude="*" \
+            ./ production/
+
+      - name: Commit and push production
+        working-directory: production
+        env:
+          DEPLOYED_TAG: ${{ env.DEPLOY_TAG }}
+          DEPLOYED_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add --all
+
+          if git diff --cached --quiet; then
+            echo "Production already matches ${DEPLOYED_TAG}."
+            exit 0
+          fi
+
+          git commit -m "Deploy ${DEPLOYED_TAG} (${DEPLOYED_SHA})"
+          git push origin "$PRODUCTION_BRANCH"
