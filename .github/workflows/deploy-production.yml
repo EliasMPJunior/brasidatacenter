@@ -64,13 +64,20 @@ jobs:
       - name: Replace production content
         run: |
           # Whitelist deploy: unlike an exclude-list sync, production must end
-          # up with exactly ontology/, src/brasidatacenter/ and README.md --
-          # nothing else. --delete-excluded removes anything in production
+          # up with exactly ontology/, src/brasidatacenter/, README.md,
+          # pyproject.toml and LICENSE (the last two build the published
+          # package) -- nothing else. --delete-excluded removes anything in production
           # that isn't explicitly included below, so every include needed to
-          # reach a path is listed (the parent directory, then its contents),
-          # and .git/ is protected so the production clone itself survives.
+          # reach a path is listed (the parent directory, then its contents).
+          # Protected, so they survive: .git/ (the production clone itself)
+          # and what only production owns -- .github/ (its PyPI publish
+          # workflow), CNAME (the GitHub Pages domain serving the ontology
+          # IRIs, datacenter.app.br) and .gitignore.
           rsync -av --delete-excluded \
             --filter='P /.git/' \
+            --filter='P /.github/' \
+            --filter='P /CNAME' \
+            --filter='P /.gitignore' \
             --exclude="/production/" \
             --include="/ontology/" \
             --include="/ontology/**" \
@@ -78,6 +85,8 @@ jobs:
             --include="/src/brasidatacenter/" \
             --include="/src/brasidatacenter/**" \
             --include="/README.md" \
+            --include="/pyproject.toml" \
+            --include="/LICENSE" \
             --exclude="*" \
             ./ production/
 
