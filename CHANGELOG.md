@@ -6,6 +6,8 @@
 
 - `pyproject.toml` and `LICENSE` in this repository, so it installs (`pip install -e .`, `reinstall.sh`) and builds the `brasidatacenter` package on its own.
 
+- `resources.ontology_path_for_iri(iri)` and `ONTOLOGY_BASE_IRI`: the file of an ontology (or of a term in it) from its IRI, which is the base followed by the file's path under `ontology/`.
+- Tests (`tests/`): IRI resolution, and every ontology file declaring its own path as its IRI.
 - AECO file encodings: `aeco:FileEncoding` with `aeco:fileExtension` and `aeco:mediaType` in the core schema, and `representation/encoding.ttl` declaring the IFC STEP physical file (`ifc`, `application/x-step`) and DXF (`dxf`, `image/vnd.dxf`) encodings, registered in the catalog.
 
 ### Changed
