@@ -1,4 +1,4 @@
-@prefix : <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl#> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix omg: <https://w3id.org/omg#> .
@@ -9,9 +9,9 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://datacenter.app.br/ontology/domain/aeco/ns.ttl#> .
+@base <http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl#> .
 
-<http://datacenter.app.br/ontology/domain/aeco/ns.ttl> rdf:type owl:Ontology ;
+<http://datacenter.app.br/ontology/domain/aeco/core/schema.ttl> rdf:type owl:Ontology ;
                                                         rdfs:label "AECO Ontology"@en ,
                                                                    "Ontologia do setor AECO"@pt-br .
 
