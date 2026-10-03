@@ -63,11 +63,11 @@ if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }
 
-Write-Info "Checking build dependency: hatchling>=1.27..."
-& $PythonExe -c "import hatchling"
+Write-Info "Checking build dependencies: hatchling>=1.27 and editables..."
+& $PythonExe -c "import hatchling, editables"
 if ($LASTEXITCODE -ne 0) {
-    Write-Failure "hatchling>=1.27 is required."
-    Write-Host 'Fix: python -m pip install "hatchling>=1.27"'
+    Write-Failure "hatchling>=1.27 and editables are required."
+    Write-Host 'Fix: python -m pip install "hatchling>=1.27" editables'
     exit 1
 }
 
