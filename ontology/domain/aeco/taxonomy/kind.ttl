@@ -9927,11 +9927,6 @@ skos:prefLabel
 
 :Tubo
     rdf:type owl:Class ;
-    rdfs:subClassOf [
-        rdf:type owl:Restriction ;
-        owl:onProperty crm:P138i_has_representation ;
-        owl:someValuesFrom representation:PipeRepresentation
-    ] ;
     dcterms:identifier "Tubo" ;
     skos:prefLabel "Pipe"@en,
         "Tubo"@pt-br ;
