@@ -1,0 +1,38 @@
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/abox/facade.ttl#> .
+@prefix facade: <http://ontobdc.org/ontology/domain/facade.ttl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://datacenter.app.br/ontology/tool/ontobdc/abox/facade.ttl>
+    a owl:Ontology .
+
+:DataContainerFacade
+    a facade:ResourceFacade ;
+    schema:identifier "data_container" ;
+    schema:name "Data Container" ;
+    schema:description "Editable metadata of a registered storage container." ;
+    facade:hasFacadeField :TitleField, :DescriptionField .
+
+:TitleField
+    a facade:FacadeField ;
+    schema:identifier "title" ;
+    schema:name "Title" ;
+    schema:description "The title of the container." ;
+    facade:fieldDatatype xsd:string ;
+    facade:fieldOrder 0 ;
+    facade:mapsToProperty dcterms:title ;
+    facade:isRequired true ;
+    facade:isEditable true .
+
+:DescriptionField
+    a facade:FacadeField ;
+    schema:identifier "description" ;
+    schema:name "Description" ;
+    schema:description "The description of the container." ;
+    facade:fieldDatatype xsd:string ;
+    facade:fieldOrder 1 ;
+    facade:mapsToProperty dcterms:description ;
+    facade:isRequired false ;
+    facade:isEditable true .
