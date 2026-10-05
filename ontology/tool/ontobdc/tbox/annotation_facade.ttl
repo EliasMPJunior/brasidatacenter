@@ -95,11 +95,11 @@
     schema:identifier "source_document" ;
     schema:name "Source document"@en ,
         "Documento de origem"@pt-br ;
-    schema:description "The IRI, in the container graph, of the document the annotation was made on."@en ,
-        "O IRI, no grafo do container, do documento sobre o qual a anotação foi feita."@pt-br ;
+    schema:description "The IRI, in the container graph, of the document the annotation was made on, when it was made on one."@en ,
+        "O IRI, no grafo do container, do documento sobre o qual a anotação foi feita, quando foi feita sobre um."@pt-br ;
     facade:fieldDatatype xsd:anyURI ;
     facade:fieldOrder 5 ;
-    facade:isRequired true ;
+    facade:isRequired false ;
     facade:isMultivalued false ;
     facade:mapsToResource dcterms:source .
 
