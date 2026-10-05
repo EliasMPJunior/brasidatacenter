@@ -1,4 +1,4 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/resource/annotation_facade.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/tbox/annotation_facade.ttl#> .
 @prefix facade: <http://ontobdc.org/ontology/domain/facade.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -8,7 +8,7 @@
 @prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/resource/annotation_facade.ttl>
+<http://datacenter.app.br/ontology/tool/ontobdc/tbox/annotation_facade.ttl>
     rdf:type owl:Ontology ;
     schema:name "Annotation Facade"@en ,
         "Fachada de Anotação"@pt-br ;
