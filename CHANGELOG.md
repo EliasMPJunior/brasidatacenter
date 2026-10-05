@@ -9,7 +9,7 @@
 - `resources.ontology_path_for_iri(iri)` and `ONTOLOGY_BASE_IRI`: the file of an ontology (or of a term in it) from its IRI, which is the base followed by the file's path under `ontology/`.
 - Tests (`tests/`): IRI resolution, and every ontology file declaring its own path as its IRI.
 - Annotation types: `domain/annotation/taxonomy/type.ttl` declares the concrete categories an annotation is persisted as (Note, Issue, Question, Classification, Location, Record), each a subclass of `:Annotation` with labels in English and Brazilian Portuguese.
-- Annotation facade: `tool/ontobdc/tbox/annotation_facade.ttl` declares the fields of an annotation (global ID, type, title, text, geometry as WKT, source document as an IRI of the container graph, author, creation time), each mapped to a standard property. It conforms to the facade shapes.
+- Annotation facade: `tool/ontobdc/tbox/annotation_facade.ttl` declares the fields of an annotation (global ID, type, title, text, geometry as WKT, source document as an IRI of the container graph, author, creation time, and the related documents as a list of IRIs), each mapped to a standard property. It conforms to the facade shapes.
 - AECO file encodings: `aeco:FileEncoding` with `aeco:fileExtension` and `aeco:mediaType` in the core schema, and `representation/encoding.ttl` declaring the IFC STEP physical file (`ifc`, `application/x-step`) and DXF (`dxf`, `image/vnd.dxf`) encodings, registered in the catalog.
 
 ### Changed

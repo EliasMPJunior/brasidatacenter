@@ -29,7 +29,8 @@
         :GeometryField ,
         :SourceDocumentField ,
         :AuthorField ,
-        :CreatedAtField .
+        :CreatedAtField ,
+        :RelatedDocumentsField .
 
 :GlobalIdField
     rdf:type facade:FacadeField ;
@@ -124,3 +125,16 @@
     facade:isRequired true ;
     facade:isMultivalued false ;
     facade:mapsToResource dcterms:created .
+
+:RelatedDocumentsField
+    rdf:type facade:FacadeField ;
+    schema:identifier "related_documents" ;
+    schema:name "Related documents"@en ,
+        "Documentos relacionados"@pt-br ;
+    schema:description "The IRIs, in the container graph, of the other documents the annotation refers to, separated by a vertical bar. The document it was made on is the source document, not one of these."@en ,
+        "Os IRIs, no grafo do container, dos outros documentos a que a anotação se refere, separados por uma barra vertical. O documento sobre o qual foi feita é o documento de origem, e não um destes."@pt-br ;
+    facade:fieldDatatype xsd:anyURI ;
+    facade:fieldOrder 8 ;
+    facade:isRequired false ;
+    facade:isMultivalued true ;
+    facade:mapsToResource dcterms:relation .
