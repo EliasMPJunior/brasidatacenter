@@ -82,11 +82,11 @@
     schema:identifier "geometry" ;
     schema:name "Geometry"@en ,
         "Geometria"@pt-br ;
-    schema:description "Well-known text of the captured points, in click order: a POINT for one, a LINESTRING for more."@en ,
-        "Well-known text dos pontos capturados, na ordem do clique: um POINT para um, um LINESTRING para mais."@pt-br ;
+    schema:description "Well-known text of the captured points, in click order: a POINT for one, a LINESTRING for more. Absent when the annotation is not placed at any point."@en ,
+        "Well-known text dos pontos capturados, na ordem do clique: um POINT para um, um LINESTRING para mais. Ausente quando a anotação não está em nenhum ponto."@pt-br ;
     facade:fieldDatatype geo:wktLiteral ;
     facade:fieldOrder 4 ;
-    facade:isRequired true ;
+    facade:isRequired false ;
     facade:isMultivalued false ;
     facade:mapsToResource geo:asWKT .
 
