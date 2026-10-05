@@ -33,8 +33,16 @@
     dcterms:identifier "issue" ;
     skos:prefLabel "Issue"@en ,
         "Alerta"@pt-br ;
-    skos:definition "Problem or question with a lifecycle."@en ,
-        "Problema ou dúvida com ciclo de vida."@pt-br .
+    skos:definition "Problem with a lifecycle."@en ,
+        "Problema com ciclo de vida."@pt-br .
+
+:Question rdf:type owl:Class ;
+    rdfs:subClassOf :Annotation ;
+    dcterms:identifier "question" ;
+    skos:prefLabel "Question"@en ,
+        "Dúvida"@pt-br ;
+    skos:definition "Question that awaits an answer."@en ,
+        "Dúvida que aguarda resposta."@pt-br .
 
 :Classification rdf:type owl:Class ;
     rdfs:subClassOf :Annotation ;

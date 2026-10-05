@@ -8,7 +8,7 @@
 
 - `resources.ontology_path_for_iri(iri)` and `ONTOLOGY_BASE_IRI`: the file of an ontology (or of a term in it) from its IRI, which is the base followed by the file's path under `ontology/`.
 - Tests (`tests/`): IRI resolution, and every ontology file declaring its own path as its IRI.
-- Annotation types: `domain/annotation/taxonomy/type.ttl` declares the five concrete categories an annotation is persisted as (Note, Issue, Classification, Location, Record), each a subclass of `:Annotation` with labels in English and Brazilian Portuguese.
+- Annotation types: `domain/annotation/taxonomy/type.ttl` declares the concrete categories an annotation is persisted as (Note, Issue, Question, Classification, Location, Record), each a subclass of `:Annotation` with labels in English and Brazilian Portuguese.
 - AECO file encodings: `aeco:FileEncoding` with `aeco:fileExtension` and `aeco:mediaType` in the core schema, and `representation/encoding.ttl` declaring the IFC STEP physical file (`ifc`, `application/x-step`) and DXF (`dxf`, `image/vnd.dxf`) encodings, registered in the catalog.
 
 ### Changed
