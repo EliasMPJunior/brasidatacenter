@@ -12,13 +12,11 @@
     rdfs:comment "The concrete categories an annotation is persisted as: each is a subclass of :Annotation."@en ,
         "As categorias concretas em que uma anotação é persistida: cada uma é subclasse de :Annotation."@pt-br .
 
-
 :Annotation rdf:type owl:Class ;
     rdfs:label "Annotation"@en ,
         "Anotação"@pt-br ;
     skos:definition "Something said about a target, in one of the concrete categories that are its subclasses."@en ,
         "Algo dito sobre um alvo, em uma das categorias concretas que são suas subclasses."@pt-br .
-
 
 :Note rdf:type owl:Class ;
     rdfs:subClassOf :Annotation ;
@@ -44,14 +42,6 @@
     skos:definition "Question that awaits an answer."@en ,
         "Dúvida que aguarda resposta."@pt-br .
 
-:Classification rdf:type owl:Class ;
-    rdfs:subClassOf :Annotation ;
-    dcterms:identifier "classification" ;
-    skos:prefLabel "Classification"@en ,
-        "Classificação"@pt-br ;
-    skos:definition "Semantic classification by URI."@en ,
-        "Classificação semântica por URI."@pt-br .
-
 :Location rdf:type owl:Class ;
     rdfs:subClassOf :Annotation ;
     dcterms:identifier "location" ;
@@ -59,11 +49,3 @@
         "Localização"@pt-br ;
     skos:definition "Representation, geospatial, relative or positional location."@en ,
         "Localização de representação, geoespacial, relativa ou posicional."@pt-br .
-
-:Record rdf:type owl:Class ;
-    rdfs:subClassOf :Annotation ;
-    dcterms:identifier "record" ;
-    skos:prefLabel "Record"@en ,
-        "Registro"@pt-br ;
-    skos:definition "Evidence such as a photo, document, measurement or invoice."@en ,
-        "Evidência, como foto, documento, medição ou nota fiscal."@pt-br .
