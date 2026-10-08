@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Removed
+
+- The `Classification` and `Record` annotation types from `domain/annotation/taxonomy/type.ttl`: an annotation is now a Note, an Issue, a Question or a Location.
+
 ## v0.10.0
 
 ### Added

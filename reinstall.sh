@@ -53,13 +53,20 @@ rm -rf "${SCRIPT_DIR}/src/brasidatacenter/__pycache__"
 echo -e "${YELLOW}Reinstalling in editable mode...${RESET}"
 # --no-build-isolation builds with this environment's packages: hatchling, and
 # editables for the editable install.
-python -c "import hatchling, editables" >/dev/null 2>&1
-if [ $? -ne 0 ]; then
-    echo -e "${RED}✗ Missing build dependency: hatchling or editables${RESET}"
-    echo -e "${YELLOW}This environment lacks hatchling or editables, and pip needs both to install this project in editable mode.${RESET}"
-    echo -e "${YELLOW}If you are offline, pip cannot download build dependencies.${RESET}"
-    echo -e "${YELLOW}Fix:${RESET} pip install \"hatchling>=1.27\" editables"
-    exit 1
+if ! python -c "import hatchling, editables" >/dev/null 2>&1; then
+    if python -c "import sys; sys.exit(0 if sys.prefix != sys.base_prefix else 1)"; then
+        echo -e "${YELLOW}Installing missing build dependencies in the virtual environment: hatchling and editables${RESET}"
+        if ! python -m pip install "hatchling>=1.27" editables; then
+            echo -e "${RED}✗ Failed to install hatchling and editables in the virtual environment.${RESET}"
+            exit 1
+        fi
+    else
+        echo -e "${RED}✗ Missing build dependency: hatchling or editables${RESET}"
+        echo -e "${YELLOW}This environment lacks hatchling or editables, and pip needs both to install this project in editable mode.${RESET}"
+        echo -e "${YELLOW}If you are offline, pip cannot download build dependencies.${RESET}"
+        echo -e "${YELLOW}Fix:${RESET} pip install \"hatchling>=1.27\" editables"
+        exit 1
+    fi
 fi
 
 pip install -e "${SCRIPT_DIR}" --no-build-isolation
