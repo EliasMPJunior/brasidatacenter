@@ -14,3 +14,6 @@
 
 :OntoAssistant a owl:Class ;
     rdfs:subClassOf ewe:Channel, sem:Actor .
+
+:DigitalAssistantPanel owl:Class ;
+    rdfs:subClassOf sioc:Container. 
