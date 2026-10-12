@@ -87,6 +87,56 @@ sioc:Container rdf:type owl:Class .
 sioc:UserAccount rdf:type owl:Class .
 
 
+###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#DesktopBrowserLayoutLoadedContext
+:DesktopBrowserLayoutLoadedContext rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+                          owl:intersectionOf ( dul:Situation
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:isClassifiedBy ;
+                                                 owl:hasValue :Desktop ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:isClassifiedBy ;
+                                                 owl:hasValue :Browser ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:includesEvent ;
+                                                 owl:hasValue :LayoutLoadedEvent ]
+                                             )
+                        ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty dul:satisfies ;
+                      owl:hasValue :NoProjectLoaded
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty dul:isSettingFor ;
+                      owl:hasValue :DesktopWelcomeConversation
+                    ] .
+
+
+###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#MobileBrowserLayoutLoadedContext
+:MobileBrowserLayoutLoadedContext rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+                          owl:intersectionOf ( dul:Situation
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:isClassifiedBy ;
+                                                 owl:hasValue :Mobile ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:isClassifiedBy ;
+                                                 owl:hasValue :Browser ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty dul:includesEvent ;
+                                                 owl:hasValue :LayoutLoadedEvent ]
+                                             )
+                        ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                      owl:onProperty dul:satisfies ;
+                      owl:hasValue :NoProjectLoaded
+                    ] ,
+                    [ rdf:type owl:Restriction ;
+                      owl:onProperty dul:isSettingFor ;
+                      owl:hasValue :MobileWelcomeConversation
+                    ] .
+
+
 #################################################################
 #    Individuals
 #################################################################
