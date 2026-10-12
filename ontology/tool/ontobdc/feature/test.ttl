@@ -1,0 +1,16 @@
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/feature/test.ttl#> .
+@prefix event: <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<http://datacenter.app.br/ontology/tool/ontobdc/feature/test.ttl>
+    a owl:Ontology ;
+    owl:imports
+        <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl> ,
+        <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl> .
+
+:CurrentPresentationContext a dul:Situation ;
+    dul:isClassifiedBy event:Mobile, event:Browser ;
+    dul:includesEvent event:LayoutLoadedEvent ;
+    dcterms:language "pt-BR" .
