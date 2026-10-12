@@ -146,11 +146,9 @@ sioc:UserAccount rdf:type owl:Class .
 :MobileWelcomeConversation a convo:Conversation, co:List ;
    co:firstItem :MobileWelcomeMessage; dul:hasSetting :InitialMobileBrowserPresentationContext .
 
-:DesktopWelcomeMessage a co:ListItem ;
-    co:itemContent :DesktopWelcomeConversation .
+:DesktopWelcomeMessage a co:ListItem .
 
-:MobileWelcomeMessage a co:ListItem ;
-    co:itemContent :MobileWelcomeConversation .
+:MobileWelcomeMessage a co:ListItem .
 
 :OnLayoutLoaded a ewe:Rule ;
     ewe:triggeredBy :LayoutLoadedEvent ;
