@@ -9,5 +9,5 @@
 
 :LayoutLoadedEvent a feat:PresentationEvent ;
    dcterms:identifier "presentation.main.layout.loaded" .
-:MainDock a feat:DigitalDock ;
+:DigitalDock a feat:DigitalDock ;
    ewe:generatesEvent :LayoutLoadedEvent .
