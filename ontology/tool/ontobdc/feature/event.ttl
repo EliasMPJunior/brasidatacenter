@@ -148,10 +148,10 @@ sioc:UserAccount rdf:type owl:Class .
 
 :DesktopWelcomeMessage a co:ListItem, convo:Message ;
     convo:inThread :OnLayoutLoaded ;
-    convo:contributionOf :MobileWelcomeConversation ;
+    convo:contributionOf :DesktopWelcomeConversation ;
     convo:authoredBy ex:bot ;
     
-    convo:text "4" . .
+    convo:text "4" .
 
 :MobileWelcomeMessage a co:ListItem .
 
