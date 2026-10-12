@@ -150,15 +150,17 @@ sioc:UserAccount rdf:type owl:Class .
     convo:inThread :OnLayoutLoaded ;
     convo:contributionOf :DesktopWelcomeConversation ;
     convo:authoredBy :AssistantTab ;
-    
-    convo:text "Seja bem-vindo " .
+    convo:text "Seja bem-vindo ao InfoBIM! Você ainda não tem um projeto aberto. Selecione uma das opções abaixo para começar."@pt-BR ,
+               "Welcome to InfoBIM! You don't have a project open yet. Select one of the options below to get started."@en ,
+               "¡Bienvenido a InfoBIM! Todavía no tienes ningún proyecto abierto. Selecciona una de las opciones a continuación para comenzar."@es .
 
 :MobileWelcomeMessage a co:ListItem, convo:Message ;
     convo:inThread :OnLayoutLoaded ;
     convo:contributionOf :MobileWelcomeConversation ;
     convo:authoredBy :AssistantTab ;
-
-    convo:text "Seja bem-vindo " .
+    convo:text "Seja bem-vindo ao InfoBIM! Você ainda não tem um projeto aberto. Conecte-se a um projeto remoto para começar."@pt-BR ,
+               "Welcome to InfoBIM! You don't have a project open yet. Connect to a remote project to get started."@en ,
+               "¡Bienvenido a InfoBIM! Todavía no tienes ningún proyecto abierto. Conéctate a un proyecto remoto para comenzar."@es .
 
 :OnLayoutLoaded a ewe:Rule, convo:Thread;
     ewe:triggeredBy :LayoutLoadedEvent ;
