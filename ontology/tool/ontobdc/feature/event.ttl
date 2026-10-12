@@ -140,11 +140,11 @@ sioc:UserAccount rdf:type owl:Class .
     dul:isSettingFor :MobileWelcomeConversation .
 
 :DesktopWelcomeConversation a convo:Conversation, co:List;
-    co:first Item :DesktopWelcomeMessage;
+    co:firstItem :DesktopWelcomeMessage;
     dul:hasSetting :InitialDesktopBrowserPresentationContext .
 
 :MobileWelcomeConversation a convo:Conversation, co:List ;
-   co:first Item :MobileWelcomeMessage; dul:hasSetting :InitialMobileBrowserPresentationContext .
+   co:firstItem :MobileWelcomeMessage; dul:hasSetting :InitialMobileBrowserPresentationContext .
 
 :DesktopWelcomeMessage a co:ListItem ;
     co:itemContent :DesktopWelcomeConversation .
