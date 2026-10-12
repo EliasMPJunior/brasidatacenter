@@ -146,7 +146,12 @@ sioc:UserAccount rdf:type owl:Class .
 :MobileWelcomeConversation a convo:Conversation, co:List ;
    co:firstItem :MobileWelcomeMessage; dul:hasSetting :InitialMobileBrowserPresentationContext .
 
-:DesktopWelcomeMessage a co:ListItem .
+:DesktopWelcomeMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnLayoutLoaded ;
+    convo:contributionOf :MobileWelcomeConversation ;
+    convo:authoredBy ex:bot ;
+    
+    convo:text "4" . .
 
 :MobileWelcomeMessage a co:ListItem .
 
