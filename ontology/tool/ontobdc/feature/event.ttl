@@ -160,7 +160,7 @@ sioc:UserAccount rdf:type owl:Class .
 
     convo:text "Seja bem-vindo " .
 
-:OnLayoutLoaded a ewe:Rule ;
+:OnLayoutLoaded a ewe:Rule, convo:Thread;
     ewe:triggeredBy :LayoutLoadedEvent ;
     ewe:uses :DigitalDockPresentation ;
     dul:associatedWith :InitialDesktopBrowserPresentationContext ,
