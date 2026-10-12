@@ -153,7 +153,12 @@ sioc:UserAccount rdf:type owl:Class .
     
     convo:text "Seja bem-vindo " .
 
-:MobileWelcomeMessage a co:ListItem .
+:MobileWelcomeMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnLayoutLoaded ;
+    convo:contributionOf :MobileWelcomeConversation ;
+    convo:authoredBy :AssistantTab ;
+
+    convo:text "Seja bem-vindo " .
 
 :OnLayoutLoaded a ewe:Rule ;
     ewe:triggeredBy :LayoutLoadedEvent ;
