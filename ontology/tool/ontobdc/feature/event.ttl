@@ -149,9 +149,9 @@ sioc:UserAccount rdf:type owl:Class .
 :DesktopWelcomeMessage a co:ListItem, convo:Message ;
     convo:inThread :OnLayoutLoaded ;
     convo:contributionOf :DesktopWelcomeConversation ;
-    convo:authoredBy ex:bot ;
+    convo:authoredBy :AssistantTab ;
     
-    convo:text "4" .
+    convo:text "Seja bem-vindo " .
 
 :MobileWelcomeMessage a co:ListItem .
 
