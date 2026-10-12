@@ -10,4 +10,4 @@
     rdfs:subClassOf ewe:Event, sem:Event.
 
 :DigitalDock a owl:Class ;
-    rdfs:subClassOf ewe:Channel, sem:Actor ; 
+    rdfs:subClassOf ewe:Channel, sem:Actor .
