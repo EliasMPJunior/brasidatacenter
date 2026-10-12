@@ -10,6 +10,7 @@
 @prefix sioc: <http://rdfs.org/sioc/ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix convo: <https://ontology.inferal.com/modules/conversation/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @base <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
 
 <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl> rdf:type owl:Ontology ;
@@ -117,7 +118,15 @@ sioc:UserAccount rdf:type owl:Class .
                    sioc:has_subscriber :AssistantTab .
 
 
-:NoProjectLoaded a convo:Conversation .
+:NoProjectLoaded a dul:Description .
+
+:InitialDesktopBrowserPresentationContext a dul:Situation ;
+    dul:satisfies :NoProjectLoaded ;
+    dul:isSettingFor :WelcomeConversation .
+
+:InitialMobileBrowserPresentationContext a dul:Situation ;
+    dul:satisfies :NoProjectLoaded ;
+    dul:isSettingFor :WelcomeConversation .
 
 :WelcomeConversation a convo:Conversation .
 
