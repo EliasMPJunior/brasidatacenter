@@ -1,6 +1,7 @@
 @prefix : <http://datacenter.app.br/ontology/tool/ontobdc/feature/test.ttl#> .
 @prefix event: <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
@@ -14,3 +15,33 @@
     dul:isClassifiedBy event:Mobile, event:Browser ;
     dul:includesEvent event:LayoutLoadedEvent ;
     dcterms:language "pt-BR" .
+
+:DesktopBrowserLayoutLoadedContext
+    a owl:Class ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            dul:Situation
+            [ a owl:Restriction ; owl:onProperty dul:isClassifiedBy ; owl:hasValue event:Desktop ]
+            [ a owl:Restriction ; owl:onProperty dul:isClassifiedBy ; owl:hasValue event:Browser ]
+            [ a owl:Restriction ; owl:onProperty dul:includesEvent ; owl:hasValue event:LayoutLoadedEvent ]
+        )
+    ] ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty dul:satisfies ; owl:hasValue event:NoProjectLoaded ] ,
+        [ a owl:Restriction ; owl:onProperty dul:isSettingFor ; owl:hasValue event:DesktopWelcomeConversation ] .
+
+:MobileBrowserLayoutLoadedContext
+    a owl:Class ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            dul:Situation
+            [ a owl:Restriction ; owl:onProperty dul:isClassifiedBy ; owl:hasValue event:Mobile ]
+            [ a owl:Restriction ; owl:onProperty dul:isClassifiedBy ; owl:hasValue event:Browser ]
+            [ a owl:Restriction ; owl:onProperty dul:includesEvent ; owl:hasValue event:LayoutLoadedEvent ]
+        )
+    ] ;
+    rdfs:subClassOf
+        [ a owl:Restriction ; owl:onProperty dul:satisfies ; owl:hasValue event:NoProjectLoaded ] ,
+        [ a owl:Restriction ; owl:onProperty dul:isSettingFor ; owl:hasValue event:MobileWelcomeConversation ] .
