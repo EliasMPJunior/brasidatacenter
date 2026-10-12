@@ -11,6 +11,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix convo: <https://ontology.inferal.com/modules/conversation/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix co: <http://purl.org/co/> .
 @base <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
 
 <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl> rdf:type owl:Ontology ;
@@ -138,11 +139,12 @@ sioc:UserAccount rdf:type owl:Class .
     dul:isClassifiedBy :Mobile , :Browser ;
     dul:isSettingFor :MobileWelcomeConversation .
 
-:DesktopWelcomeConversation a convo:Conversation ;
+:DesktopWelcomeConversation a convo:Conversation, co:List;
+    co:first Item :DesktopWelcomeMessage;
     dul:hasSetting :InitialDesktopBrowserPresentationContext .
 
-:MobileWelcomeConversation a convo:Conversation ;
-    dul:hasSetting :InitialMobileBrowserPresentationContext .
+:MobileWelcomeConversation a convo:Conversation, co:List ;
+   co:first Item :MobileWelcomeMessage; dul:hasSetting :InitialMobileBrowserPresentationContext .
 
 :OnLayoutLoaded a ewe:Rule ;
     ewe:triggeredBy :LayoutLoadedEvent ;
