@@ -120,12 +120,18 @@ sioc:UserAccount rdf:type owl:Class .
 
 :NoProjectLoaded a dul:Description .
 
+:Desktop a dul:Concept .
+
+:Mobile a dul:Concept .
+
 :InitialDesktopBrowserPresentationContext a dul:Situation ;
     dul:satisfies :NoProjectLoaded ;
+    dul:isClassifiedBy :Desktop ;
     dul:isSettingFor :DesktopWelcomeConversation .
 
 :InitialMobileBrowserPresentationContext a dul:Situation ;
     dul:satisfies :NoProjectLoaded ;
+    dul:isClassifiedBy :Mobile ;
     dul:isSettingFor :MobileWelcomeConversation .
 
 :DesktopWelcomeConversation a convo:Conversation ;
