@@ -150,9 +150,9 @@ sioc:UserAccount rdf:type owl:Class .
     convo:inThread :OnLayoutLoaded ;
     convo:contributionOf :DesktopWelcomeConversation ;
     convo:authoredBy :AssistantTab ;
-    convo:text "Seja bem-vindo ao InfoBIM! Você ainda não tem um projeto aberto. Selecione uma das opções abaixo para começar."@pt-BR ,
-               "Welcome to InfoBIM! You don't have a project open yet. Select one of the options below to get started."@en ,
-               "¡Bienvenido a InfoBIM! Todavía no tienes ningún proyecto abierto. Selecciona una de las opciones a continuación para comenzar."@es .
+    convo:text "Seja bem-vindo ao InfoBIM! Você ainda não tem um projeto aberto. Selecione uma das opções ao lado para começar."@pt-BR ,
+               "Welcome to InfoBIM! You don't have a project open yet. Select one of the options to the side to get started."@en ,
+               "¡Bienvenido a InfoBIM! Todavía no tienes ningún proyecto abierto. Selecciona una de las opciones al lado para comenzar."@es .
 
 :MobileWelcomeMessage a co:ListItem, convo:Message ;
     convo:inThread :OnLayoutLoaded ;
