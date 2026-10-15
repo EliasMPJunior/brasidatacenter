@@ -10,7 +10,7 @@ from rdflib import Graph
 
 from brasidatacenter.resources import ontology_path
 
-_FEATURE_PATH: tuple[str, ...] = ("tool", "ontobdc", "feature")
+_FEATURE_PATH: tuple[str, ...] = ("tool", "ontobdc", "presentation")
 _KNOWN_DEVICES = frozenset({"Desktop", "Mobile"})
 _KNOWN_ENVIRONMENTS = frozenset({"Browser", "NativeApp"})
 _VALUES_PATTERN = re.compile(
