@@ -1,0 +1,29 @@
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/facade/carousel.ttl#> .
+@prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
+@prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://datacenter.app.br/ontology/tool/ontobdc/facade/carousel.ttl>
+    rdf:type owl:Ontology ;
+    owl:imports <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl> ;
+    rdfs:label "Carousel"@en ,
+        "Carrossel"@pt-br ,
+        "Carrusel"@es .
+
+# A carousel is a gallery of images (schema:ImageGallery) that a facade field can
+# ask for in place of plain text. The files it shows are the ones the image
+# profile of the core ontology accepts, which lists the MIME types and the
+# extensions of the photographs, HEIC among them.
+:ImageCarousel rdf:type owl:Class ;
+    rdfs:subClassOf facade:Visualization , schema:ImageGallery ;
+    rdfs:label "Image carousel"@en ,
+        "Carrossel de imagens"@pt-br ,
+        "Carrusel de imágenes"@es ;
+    skos:definition "A visualization that shows the image files a field points to, one after the other."@en ,
+        "Uma visualização que mostra, uma depois da outra, as imagens para as quais um campo aponta."@pt-br ,
+        "Una visualización que muestra, una tras otra, las imágenes a las que apunta un campo."@es ;
+    facade:acceptsFileProfile obdc:PhotographicFile .

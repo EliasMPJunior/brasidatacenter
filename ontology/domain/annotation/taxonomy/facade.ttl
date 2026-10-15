@@ -2,6 +2,7 @@
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
 @prefix obdc: <http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
+@prefix carousel: <http://datacenter.app.br/ontology/tool/ontobdc/facade/carousel.ttl#> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
@@ -180,7 +181,8 @@
     facade:isRequired false ;
     facade:isMultivalued true ;
     facade:mapsToResource dcterms:relation ;
-    facade:hasResourceFacade :RelatedDocumentFacade .
+    facade:hasResourceFacade :RelatedDocumentFacade ;
+    facade:hasAlternativeVisualization carousel:ImageCarousel .
 
 :RelatedDocumentFacade
     rdf:type facade:ResourceFacade ;

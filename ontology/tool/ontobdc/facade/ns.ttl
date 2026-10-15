@@ -69,6 +69,34 @@
     skos:definition "Links a resource to the facade that projects it."@en ,
         "Vincula um recurso à fachada que o projeta."@pt-br .
 
+:Visualization rdf:type owl:Class ;
+    rdfs:label "Visualization"@en ,
+        "Visualização"@pt-br ,
+        "Visualización"@es ;
+    skos:definition "A way of showing the values of a facade field other than as plain text, such as a carousel of images."@en ,
+        "Uma forma de mostrar os valores de um campo de fachada diferente de texto simples, como um carrossel de imagens."@pt-br ,
+        "Una forma de mostrar los valores de un campo de fachada distinta del texto simple, como un carrusel de imágenes."@es .
+
+:hasAlternativeVisualization rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range :Visualization ;
+    rdfs:label "has alternative visualization"@en ,
+        "tem visualização alternativa"@pt-br ,
+        "tiene visualización alternativa"@es ;
+    skos:definition "Links a facade field to a visualization that shows its values in place of plain text."@en ,
+        "Vincula um campo de fachada a uma visualização que mostra seus valores no lugar do texto simples."@pt-br ,
+        "Vincula un campo de fachada a una visualización que muestra sus valores en lugar del texto simple."@es .
+
+:acceptsFileProfile rdf:type owl:ObjectProperty ;
+    rdfs:domain :Visualization ;
+    rdfs:range obdc:FileDisplayProfile ;
+    rdfs:label "accepts file profile"@en ,
+        "aceita perfil de arquivo"@pt-br ,
+        "acepta perfil de archivo"@es ;
+    skos:definition "The file display profile whose files a visualization shows: a file takes part in it when its MIME type or extension is accepted by the profile."@en ,
+        "O perfil de exibição de arquivos cujos arquivos uma visualização mostra: um arquivo participa dela quando seu tipo MIME ou sua extensão é aceito pelo perfil."@pt-br ,
+        "El perfil de visualización de archivos cuyos archivos muestra una visualización: un archivo participa en ella cuando su tipo MIME o su extensión es aceptado por el perfil."@es .
+
 :mapsToResource rdf:type owl:ObjectProperty ;
     rdfs:domain :FacadeField ;
     rdfs:label "maps to resource"@en ,
@@ -180,6 +208,10 @@
         [
             sh:path csvw:format ;
             sh:datatype rdf:langString
+        ] ,
+        [
+            sh:path :hasAlternativeVisualization ;
+            sh:nodeKind sh:IRI
         ] ,
         [
             sh:path :isEditable ;
