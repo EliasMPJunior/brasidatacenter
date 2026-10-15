@@ -1,0 +1,115 @@
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/entity/ns.ttl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
+@prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://datacenter.app.br/ontology/tool/ontobdc/entity/ns.ttl>
+    rdf:type owl:Ontology ;
+    owl:imports <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl> ;
+    rdfs:label "Entity Ontology"@en ,
+        "Ontologia de Entidades"@pt-br ;
+    skos:definition "Declares how a data entity (an Element) is modeled in an OntoBDC dataset: the entity dataset, the data entity individual, the entity type, and the integrity shapes that bind them. Restored from the Element concept, ADR-0005, and the dataset metadata (dataset.ttl) files in use."@en ,
+        "Declara como uma entidade de dados (um Element) é modelada em um dataset OntoBDC: o dataset de entidades, o indivíduo entidade de dados, o tipo de entidade e as shapes de integridade que os ligam. Restaurada a partir do conceito Element, da ADR-0005 e dos arquivos de metadados de dataset (dataset.ttl) em uso."@pt-br .
+
+#################################################################
+#    Entity vocabulary
+#################################################################
+
+obdc:EntityDataset rdf:type owl:Class ;
+    rdfs:label "Entity dataset"@en ,
+        "Dataset de entidades"@pt-br ;
+    skos:definition "A dataset that holds data entities. Its metadata file (dataset.ttl) relates it to those entities through obdc:hasDataEntity and to the container that registers it through obdc:belongsToDataContainer."@en ,
+        "Um dataset que contém entidades de dados. Seu arquivo de metadados (dataset.ttl) o relaciona a essas entidades por obdc:hasDataEntity e ao container que o registra por obdc:belongsToDataContainer."@pt-br .
+
+obdc:DataEntity rdf:type owl:Class ;
+    rdfs:label "Data entity"@en ,
+        "Entidade de dados"@pt-br ;
+    skos:definition "A concrete RDF individual that represents one data entity (an Element) carrying actual values. It is run-time data; its entity type is a class that classifies it."@en ,
+        "Um indivíduo RDF concreto que representa uma entidade de dados (um Element) com valores reais. É dado de execução; seu tipo de entidade é uma classe que o classifica."@pt-br .
+
+obdc:SurfaceableEntity rdf:type owl:Class ;
+    rdfs:label "Surfaceable entity"@en ,
+        "Entidade exibível"@pt-br ;
+    skos:definition "The class of the entity types whose data entities can be presented. An entity type is declared as an instance of it (for example, an IFC work schedule type is a surfaceable entity)."@en ,
+        "A classe dos tipos de entidade cujas entidades de dados podem ser apresentadas. Um tipo de entidade é declarado como instância dela (por exemplo, o tipo de cronograma IFC é uma entidade exibível)."@pt-br .
+
+obdc:hasDataEntity rdf:type owl:ObjectProperty ;
+    rdfs:domain obdc:EntityDataset ;
+    rdfs:range obdc:DataEntity ;
+    rdfs:label "has data entity"@en ,
+        "tem entidade de dados"@pt-br ;
+    skos:definition "Links an entity dataset to a data entity it holds."@en ,
+        "Vincula um dataset de entidades a uma entidade de dados que ele contém."@pt-br .
+
+obdc:belongsToDataContainer rdf:type owl:ObjectProperty ;
+    rdfs:domain obdc:EntityDataset ;
+    rdfs:label "belongs to data container"@en ,
+        "pertence ao contêiner de dados"@pt-br ;
+    skos:definition "Links an entity dataset to the data container that registers it."@en ,
+        "Vincula um dataset de entidades ao contêiner de dados que o registra."@pt-br .
+
+#################################################################
+#    Identity and conformance
+#
+#    The identity of a data entity (its GlobalId, also called Element
+#    ID) is the value of dcterms:identifier on the individual. The RDF
+#    subject IRI names the graph node; it is not the identifier. The
+#    entity types of the individual are its additional rdf:type values.
+#    The facade that projects it is given by dcterms:conformsTo.
+#    These are existing vocabulary terms and are not redeclared here.
+#################################################################
+
+#################################################################
+#    Entity integrity shapes
+#################################################################
+
+:EntityDatasetShape
+    rdf:type sh:NodeShape ;
+    sh:targetClass obdc:EntityDataset ;
+    sh:property
+        [
+            sh:path obdc:hasDataEntity ;
+            sh:class obdc:DataEntity ;
+            sh:nodeKind sh:IRI
+        ] ,
+        [
+            sh:path obdc:belongsToDataContainer ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI
+        ] ,
+        [
+            sh:path dcterms:identifier ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:string
+        ] ,
+        [
+            sh:path dcterms:title ;
+            sh:minCount 1
+        ] .
+
+:DataEntityShape
+    rdf:type sh:NodeShape ;
+    sh:targetClass obdc:DataEntity ;
+    sh:property
+        [
+            sh:path dcterms:identifier ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:string
+        ] ,
+        [
+            sh:path dcterms:conformsTo ;
+            sh:nodeKind sh:IRI
+        ] .
+
+:HeldDataEntityShape
+    rdf:type sh:NodeShape ;
+    sh:targetObjectsOf obdc:hasDataEntity ;
+    sh:class obdc:DataEntity .
