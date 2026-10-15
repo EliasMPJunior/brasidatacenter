@@ -1,5 +1,6 @@
 @prefix : <http://datacenter.app.br/ontology/domain/annotation/taxonomy/facade.ttl#> .
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
+@prefix obdc: <http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
@@ -171,4 +172,11 @@
     facade:fieldOrder 9 ;
     facade:isRequired false ;
     facade:isMultivalued true ;
-    facade:mapsToResource dcterms:relation .
+    facade:mapsToResource dcterms:relation ;
+    facade:hasResourceFacade :RelatedDocumentFacade .
+
+:RelatedDocumentFacade
+    rdf:type facade:ResourceFacade ;
+    facade:isFacadeOf obdc:FileDisplayProfile  ;
+    facade:hasFacadeField
+        :TitleField  .
