@@ -1,4 +1,5 @@
 @prefix : <http://datacenter.app.br/ontology/domain/aeco/taxonomy/type.ttl#> .
+@prefix ifc43owl: <https://standards.buildingsmart.org/IFC/DEV/IFC4_3/OWL#> .
 @prefix ifcowl: <https://standards.buildingsmart.org/IFC/DEV/IFC4/FINAL/OWL#> .
 @prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -13,4 +14,7 @@
         "As classes IFC que são entidades de dados dos datasets OntoBDC."@pt-br .
 
 ifcowl:IfcProject rdf:type owl:Class ;
+    rdfs:subClassOf obdc:DataEntity .
+
+ifc43owl:IfcProject rdf:type owl:Class ;
     rdfs:subClassOf obdc:DataEntity .
