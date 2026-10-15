@@ -13,8 +13,8 @@ from brasidatacenter.resources import iter_ontology_files
 _FACADE = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#")
 _SCHEMA = Namespace("https://schema.org/")
 _CSVW = Namespace("http://www.w3.org/ns/csvw#")
-_OBDC = Namespace("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#")
-_DATA_ENTITY = URIRef("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataEntity")
+_OBDC = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#")
+_DATA_ENTITY = URIRef("http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#DataEntity")
 
 
 def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str, Any]] | None:

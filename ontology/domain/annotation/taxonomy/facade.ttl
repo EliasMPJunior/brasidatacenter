@@ -1,6 +1,6 @@
 @prefix : <http://datacenter.app.br/ontology/domain/annotation/taxonomy/facade.ttl#> .
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
-@prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix obdc: <http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
