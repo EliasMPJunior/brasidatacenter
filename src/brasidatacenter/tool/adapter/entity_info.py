@@ -106,6 +106,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "required": _flag(graph, subject, _FACADE.isRequired),
         "multivalued": _flag(graph, subject, _FACADE.isMultivalued),
         "editable": _editable(graph, subject),
+        "resource_facade": _resource_facade(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
         "labels": _labels(graph, subject),
     }
@@ -134,6 +135,30 @@ def _flag(graph: Graph, subject: URIRef, predicate: URIRef) -> bool:
         raise ValueError(f"The facade declares no boolean {predicate} for {subject}.")
 
     return bool(value.toPython())
+
+
+def _resource_facade(graph: Graph, subject: URIRef) -> dict[str, Any] | None:
+    """
+    The facade of the resources a field points to (``facade:hasResourceFacade``):
+    the class of resource it is a facade of, and the fields it exposes of each.
+    None for a field whose values are plain text.
+    """
+    resource = graph.value(subject, _FACADE.hasResourceFacade)
+    if not isinstance(resource, URIRef):
+        return None
+
+    resource_class = graph.value(resource, _FACADE.isFacadeOf)
+    return {
+        "resource_iri": str(resource_class) if resource_class is not None else None,
+        "fields": sorted(
+            (
+                _read_field(graph, field_subject)
+                for field_subject in graph.objects(resource, _FACADE.hasFacadeField)
+                if isinstance(field_subject, URIRef)
+            ),
+            key=lambda declared: declared["order"],
+        ),
+    }
 
 
 def _editable(graph: Graph, subject: URIRef) -> bool:
