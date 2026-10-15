@@ -118,8 +118,8 @@
     rdfs:range xsd:boolean ;
     rdfs:label "is editable"@en ,
         "é editável"@pt-br ;
-    skos:definition "Whether a facade field value can be changed by a user."@en ,
-        "Se o valor de um campo de fachada pode ser alterado por um usuário."@pt-br .
+    skos:definition "Whether a facade field value can be changed by a user. A field that does not declare it is not editable; an entity is editable when at least one of its facade fields is."@en ,
+        "Se o valor de um campo de fachada pode ser alterado por um usuário. Um campo que não o declara não é editável; uma entidade é editável quando ao menos um dos campos de sua fachada é."@pt-br .
 
 #################################################################
 #    Facade integrity shapes
@@ -173,6 +173,11 @@
         [
             sh:path :isMultivalued ;
             sh:minCount 1 ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:boolean
+        ] ,
+        [
+            sh:path :isEditable ;
             sh:maxCount 1 ;
             sh:datatype xsd:boolean
         ] ,

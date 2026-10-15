@@ -73,6 +73,7 @@
     facade:fieldOrder 2 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource dcterms:title .
 
 :TextField
@@ -85,6 +86,7 @@
     facade:fieldOrder 3 ;
     facade:isRequired false ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource schema:text .
 
 :GeometryField

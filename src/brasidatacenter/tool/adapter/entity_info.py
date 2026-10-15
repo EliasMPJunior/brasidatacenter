@@ -105,6 +105,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "order": int(_required_text(graph, subject, _FACADE.fieldOrder)),
         "required": _flag(graph, subject, _FACADE.isRequired),
         "multivalued": _flag(graph, subject, _FACADE.isMultivalued),
+        "editable": _editable(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
         "labels": _labels(graph, subject),
     }
@@ -133,6 +134,14 @@ def _flag(graph: Graph, subject: URIRef, predicate: URIRef) -> bool:
         raise ValueError(f"The facade declares no boolean {predicate} for {subject}.")
 
     return bool(value.toPython())
+
+
+def _editable(graph: Graph, subject: URIRef) -> bool:
+    """A field is editable when the facade says so; one that does not say so is not."""
+    if graph.value(subject, _FACADE.isEditable) is None:
+        return False
+
+    return _flag(graph, subject, _FACADE.isEditable)
 
 
 def _label(graph: Graph, subject: URIRef) -> str:

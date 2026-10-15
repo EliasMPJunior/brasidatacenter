@@ -58,6 +58,7 @@
     facade:fieldOrder 1 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource ifc4owl:name_IfcRoot .
 
 :IfcProjectIfc4DescriptionField
@@ -73,6 +74,7 @@
     facade:fieldOrder 2 ;
     facade:isRequired false ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource ifc4owl:description_IfcRoot .
 
 # ---------------------------------------------------------------
@@ -119,6 +121,7 @@
     facade:fieldOrder 1 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource ifc43owl:name_IfcRoot .
 
 :IfcProjectIfc43DescriptionField
@@ -134,4 +137,5 @@
     facade:fieldOrder 2 ;
     facade:isRequired false ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource ifc43owl:description_IfcRoot .
