@@ -165,6 +165,7 @@
     facade:fieldOrder 8 ;
     facade:isRequired false ;
     facade:isMultivalued false ;
+    facade:isEditable true ;
     facade:mapsToResource annotation:completedAt .
 
 :RelatedDocumentsField
