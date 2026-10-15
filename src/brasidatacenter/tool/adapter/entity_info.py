@@ -21,11 +21,11 @@ _TBOX_SEGMENT = "/tool/ontobdc/"
 def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str, Any]] | None:
     """
     With no argument, list the entities this package declares: one item per
-    subclass of ``core/ns.ttl:DataEntity`` (directly or through other
-    subclasses), as ``{"entity_iri": ..., "facade": ...}``, where ``facade``
-    is what ``entity_info(entity_iri)`` returns. Only subclasses of
-    ``DataEntity`` are listed; a class that is not one of them (for example
-    a direct subclass of ``SurfaceableEntity``) is not.
+    direct subclass of ``core/ns.ttl:DataEntity``, as
+    ``{"entity_iri": ..., "facade": ...}``, where ``facade`` is what
+    ``entity_info(entity_iri)`` returns. A subclass of a subclass of
+    ``DataEntity`` is not listed, nor is a subclass of any other class (for
+    example ``SurfaceableEntity``).
 
     With ``entity_id``, return the facade this package publishes for that
     entity IRI: its identifier, display name, and declared fields. Scans
@@ -54,46 +54,24 @@ def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str,
 
 def _data_entity_types() -> list[str]:
     """
-    The subclasses of ``DataEntity``, directly or through other subclasses.
+    The direct subclasses of ``DataEntity``.
 
     Reading a file's text and looking for a word is about 400 times faster
-    than parsing it, so a file is parsed only when it can say something
-    about the classes already known: it contains ``subClassOf`` and the
-    local name of one of them, starting from ``DataEntity``. Each round
-    parses the new candidate files, looks for the subclasses again, and
-    repeats while a subclass found names more candidates. The search needs
-    no external program, so it works the same inside an installed wheel.
+    than parsing it, so a file is parsed only when its text contains both
+    ``subClassOf`` and ``DataEntity``. The search needs no external program,
+    so it works the same inside an installed wheel.
     """
-    texts = {
-        ontology_file: ontology_file.read_text(encoding="utf-8")
-        for ontology_file in iter_ontology_files()
-    }
     graph = Graph()
-    parsed: set[Traversable] = set()
-    types: set[URIRef] = set()
-    while True:
-        names = {_local_name(_DATA_ENTITY), *(_local_name(known) for known in types)}
-        pending = [
-            ontology_file
-            for ontology_file, text in texts.items()
-            if ontology_file not in parsed
-            and "subClassOf" in text
-            and any(name in text for name in names)
-        ]
-        if not pending:
-            return sorted(str(known) for known in types)
+    for ontology_file in iter_ontology_files():
+        text = ontology_file.read_text(encoding="utf-8")
+        if "subClassOf" in text and _local_name(_DATA_ENTITY) in text:
+            graph.parse(data=text, format=guess_format(str(ontology_file)))
 
-        for ontology_file in pending:
-            graph.parse(
-                data=texts[ontology_file],
-                format=guess_format(str(ontology_file)),
-            )
-            parsed.add(ontology_file)
-        types = {
-            known
-            for known in graph.transitive_subjects(RDFS.subClassOf, _DATA_ENTITY)
-            if isinstance(known, URIRef) and known != _DATA_ENTITY
-        }
+    return sorted(
+        str(known)
+        for known in graph.subjects(RDFS.subClassOf, _DATA_ENTITY)
+        if isinstance(known, URIRef)
+    )
 
 
 def _local_name(iri: URIRef) -> str:
