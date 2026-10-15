@@ -12,6 +12,7 @@ from brasidatacenter.resources import iter_ontology_files
 
 _FACADE = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#")
 _SCHEMA = Namespace("https://schema.org/")
+_CSVW = Namespace("http://www.w3.org/ns/csvw#")
 _DATA_ENTITY = URIRef("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataEntity")
 
 
@@ -109,6 +110,16 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "resource_facade": _resource_facade(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
         "labels": _labels(graph, subject),
+        "formats": _formats(graph, subject),
+    }
+
+
+def _formats(graph: Graph, subject: URIRef) -> dict[str, str]:
+    """The masks the field is shown with (``csvw:format``), by lower-case language tag."""
+    return {
+        str(mask.language).lower(): str(mask)
+        for mask in graph.objects(subject, _CSVW["format"])
+        if isinstance(mask, Literal) and mask.language
     }
 
 

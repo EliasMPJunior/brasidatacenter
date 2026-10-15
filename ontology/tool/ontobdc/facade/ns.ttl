@@ -1,4 +1,5 @@
 @prefix : <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -175,6 +176,10 @@
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:datatype xsd:boolean
+        ] ,
+        [
+            sh:path csvw:format ;
+            sh:datatype rdf:langString
         ] ,
         [
             sh:path :isEditable ;
