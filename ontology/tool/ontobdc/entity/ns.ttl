@@ -1,114 +1,170 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/entity/ns.ttl#> .
+@prefix : <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix ct: <http://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
+@prefix ontouml: <http://w3id.org/ontouml#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/entity/ns.ttl>
-    rdf:type owl:Ontology ;
-    owl:imports <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl> ;
-    rdfs:label "Entity Ontology"@en ,
-        "Ontologia de Entidades"@pt-br ;
-    skos:definition "Declares how a data entity (an Element) is modeled in an OntoBDC dataset: the entity dataset, the data entity individual, the entity type, and the integrity shapes that bind them. Restored from the Element concept, ADR-0005, and the dataset metadata (dataset.ttl) files in use."@en ,
-        "Declara como uma entidade de dados (um Element) é modelada em um dataset OntoBDC: o dataset de entidades, o indivíduo entidade de dados, o tipo de entidade e as shapes de integridade que os ligam. Restaurada a partir do conceito Element, da ADR-0005 e dos arquivos de metadados de dataset (dataset.ttl) em uso."@pt-br .
-
-#################################################################
-#    Entity vocabulary
-#################################################################
-
-obdc:EntityDataset rdf:type owl:Class ;
-    rdfs:label "Entity dataset"@en ,
-        "Dataset de entidades"@pt-br ;
-    skos:definition "A dataset that holds data entities. Its metadata file (dataset.ttl) relates it to those entities through obdc:hasDataEntity and to the container that registers it through obdc:belongsToDataContainer."@en ,
-        "Um dataset que contém entidades de dados. Seu arquivo de metadados (dataset.ttl) o relaciona a essas entidades por obdc:hasDataEntity e ao container que o registra por obdc:belongsToDataContainer."@pt-br .
-
-obdc:DataEntity rdf:type owl:Class ;
-    rdfs:label "Data entity"@en ,
-        "Entidade de dados"@pt-br ;
-    skos:definition "A concrete RDF individual that represents one data entity (an Element) carrying actual values. It is run-time data; its entity type is a class that classifies it."@en ,
-        "Um indivíduo RDF concreto que representa uma entidade de dados (um Element) com valores reais. É dado de execução; seu tipo de entidade é uma classe que o classifica."@pt-br .
-
-obdc:SurfaceableEntity rdf:type owl:Class ;
-    rdfs:label "Surfaceable entity"@en ,
-        "Entidade exibível"@pt-br ;
-    skos:definition "The class of the entity types whose data entities can be presented. An entity type is declared as an instance of it (for example, an IFC work schedule type is a surfaceable entity)."@en ,
-        "A classe dos tipos de entidade cujas entidades de dados podem ser apresentadas. Um tipo de entidade é declarado como instância dela (por exemplo, o tipo de cronograma IFC é uma entidade exibível)."@pt-br .
-
-obdc:hasDataEntity rdf:type owl:ObjectProperty ;
-    rdfs:domain obdc:EntityDataset ;
-    rdfs:range obdc:DataEntity ;
-    rdfs:label "has data entity"@en ,
-        "tem entidade de dados"@pt-br ;
-    skos:definition "Links an entity dataset to a data entity it holds."@en ,
-        "Vincula um dataset de entidades a uma entidade de dados que ele contém."@pt-br .
-
-obdc:belongsToDataContainer rdf:type owl:ObjectProperty ;
-    rdfs:domain obdc:EntityDataset ;
-    rdfs:label "belongs to data container"@en ,
-        "pertence ao contêiner de dados"@pt-br ;
-    skos:definition "Links an entity dataset to the data container that registers it."@en ,
-        "Vincula um dataset de entidades ao contêiner de dados que o registra."@pt-br .
-
-#################################################################
-#    Identity and conformance
+# Entity modeling of OntoBDC, restored from the OntoBDC core ontology of the
+# lost-release repository (brasidatacenter/brasidatacenter/tool/ontobdc/tbox/ns.ttl)
+# and kept in its namespace.
 #
-#    The identity of a data entity (its GlobalId, also called Element
-#    ID) is the value of dcterms:identifier on the individual. The RDF
-#    subject IRI names the graph node; it is not the identifier. The
-#    entity types of the individual are its additional rdf:type values.
-#    The facade that projects it is given by dcterms:conformsTo.
-#    These are existing vocabulary terms and are not redeclared here.
-#################################################################
+# How it is used:
+#   - An entity TYPE is a class. It is declared as a subclass of :DataEntity
+#     (for example the dimension types) or of :SurfaceableEntity (for example
+#     WorkStream and IfcWorkSchedule).
+#   - An ELEMENT is an individual of that class. In the metadata file of the
+#     dataset (dataset.ttl) it is also asserted as `a :DataEntity`, and the
+#     dataset points to it with :hasDataEntity. Its dcterms:identifier is its
+#     GlobalId; the subject IRI is not.
+
+<http://ontobdc.org/ontology/domain/ontobdc/ns.ttl> rdf:type owl:Ontology .
 
 #################################################################
-#    Entity integrity shapes
+#    Annotation properties
 #################################################################
 
-:EntityDatasetShape
-    rdf:type sh:NodeShape ;
-    sh:targetClass obdc:EntityDataset ;
-    sh:property
-        [
-            sh:path obdc:hasDataEntity ;
-            sh:class obdc:DataEntity ;
-            sh:nodeKind sh:IRI
-        ] ,
-        [
-            sh:path obdc:belongsToDataContainer ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:IRI
-        ] ,
-        [
-            sh:path dcterms:identifier ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:datatype xsd:string
-        ] ,
-        [
-            sh:path dcterms:title ;
-            sh:minCount 1
-        ] .
+###  http://purl.org/dc/terms/identifier
+dcterms:identifier rdf:type owl:AnnotationProperty .
 
-:DataEntityShape
-    rdf:type sh:NodeShape ;
-    sh:targetClass obdc:DataEntity ;
-    sh:property
-        [
-            sh:path dcterms:identifier ;
-            sh:minCount 1 ;
-            sh:maxCount 1 ;
-            sh:datatype xsd:string
-        ] ,
-        [
-            sh:path dcterms:conformsTo ;
-            sh:nodeKind sh:IRI
-        ] .
+###  http://w3id.org/ontouml#name
+ontouml:name rdf:type owl:AnnotationProperty .
 
-:HeldDataEntityShape
-    rdf:type sh:NodeShape ;
-    sh:targetObjectsOf obdc:hasDataEntity ;
-    sh:class obdc:DataEntity .
+#################################################################
+#    Object properties
+#################################################################
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#belongsToDataContainer
+:belongsToDataContainer rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf dcterms:isPartOf ;
+                        rdfs:domain :EntityDataset ;
+                        rdfs:range :DataContainer ;
+                        ontouml:name "Belongs to data container"@en ;
+                        rdfs:comment "The entity dataset belongs to the specified data container."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#hasEntityDataset
+:hasEntityDataset rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf dcterms:hasPart ;
+                  rdfs:domain :DataContainer ;
+                  rdfs:range :EntityDataset ;
+                  ontouml:name "Has entity dataset"@en ;
+                  rdfs:comment "The data container has the specified entity dataset."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#hasDataEntity
+:hasDataEntity rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf prov:hadMember ;
+               rdfs:domain :EntityDataset ;
+               rdfs:range :DataEntity ;
+               ontouml:name "Has data entity"@en ;
+               rdfs:comment "The dataset contains the specific data entity."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#hasDocumentType
+:hasDocumentType rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf schema:additionalType ;
+                 rdfs:domain :DataEntity ;
+                 rdfs:range :DocumentType ;
+                 ontouml:name "Has document type"@en ;
+                 rdfs:comment "Relates a data entity to its document type classification."@en .
+
+###  http://purl.org/dc/terms/hasPart
+dcterms:hasPart rdf:type owl:ObjectProperty .
+
+###  http://purl.org/dc/terms/isPartOf
+dcterms:isPartOf rdf:type owl:ObjectProperty .
+
+###  http://schema.org/additionalType
+schema:additionalType rdf:type owl:ObjectProperty .
+
+###  http://www.w3.org/ns/prov#hadMember
+prov:hadMember rdf:type owl:ObjectProperty .
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#documentTypeVectorValue
+:documentTypeVectorValue rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf schema:value ;
+                         rdfs:domain :DocumentType ;
+                         rdfs:range xsd:string ;
+                         ontouml:name "Document type vector value"@en ;
+                         rdfs:comment "Serialized vector value used to represent a document type profile."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#entityAlias
+:entityAlias rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf skos:altLabel ,
+                                schema:alternateName ;
+             rdfs:domain :DataEntity ;
+             rdfs:range xsd:string ;
+             ontouml:name "Entity alias"@en ;
+             rdfs:comment "A short name or common alias for the data entity."@en .
+
+###  http://schema.org/value
+schema:value rdf:type owl:DatatypeProperty .
+
+###  http://schema.org/alternateName
+schema:alternateName rdf:type owl:DatatypeProperty .
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+skos:altLabel rdf:type owl:AnnotationProperty .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataEntity
+:DataEntity rdf:type owl:Class ;
+            rdfs:subClassOf prov:Entity ;
+            ontouml:name "Data entity"@en ;
+            rdfs:comment "An individual data entity or resource."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#EntityDataset
+:EntityDataset rdf:type owl:Class ;
+               rdfs:subClassOf ct:Folder ,
+                               dcat:Dataset ;
+               ontouml:name "Entity dataset"@en ;
+               rdfs:comment "A dataset representing a collection of related data entities."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataContainer
+:DataContainer rdf:type owl:Class ,
+                        :SurfaceableEntity ;
+               rdfs:subClassOf ct:ContainerDescription ,
+                               dcat:Catalog ;
+               ontouml:name "Data container"@en ;
+               rdfs:comment "A catalog or container that groups and organizes entity datasets."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#SurfaceableEntity
+:SurfaceableEntity rdf:type owl:Class ;
+                   ontouml:name "Surfaceable entity"@en ;
+                   rdfs:comment "Marks an entity class whose instances are eligible for a direct representation (a Tile) on an OntoBDC presentation surface."@en .
+
+###  http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DocumentType
+:DocumentType rdf:type owl:Class ;
+              rdfs:subClassOf schema:DefinedTerm ;
+              ontouml:name "Document type"@en ;
+              rdfs:comment "A controlled document type used to classify data entities."@en .
+
+###  http://schema.org/DefinedTerm
+schema:DefinedTerm rdf:type owl:Class .
+
+###  http://standards.iso.org/iso/21597/-1/ed-1/en/Container#ContainerDescription
+ct:ContainerDescription rdf:type owl:Class .
+
+###  http://standards.iso.org/iso/21597/-1/ed-1/en/Container#Folder
+ct:Folder rdf:type owl:Class .
+
+###  http://www.w3.org/ns/dcat#Catalog
+dcat:Catalog rdf:type owl:Class .
+
+###  http://www.w3.org/ns/dcat#Dataset
+dcat:Dataset rdf:type owl:Class .
+
+###  http://www.w3.org/ns/prov#Entity
+prov:Entity rdf:type owl:Class .
