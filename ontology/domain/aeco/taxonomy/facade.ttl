@@ -22,7 +22,8 @@
     rdf:type facade:DataEntityFacade ;
     schema:identifier "ifc_project" ;
     schema:name "IFC Project"@en ,
-        "Projeto IFC"@pt-br ;
+        "Projeto IFC"@pt-br ,
+        "Proyecto IFC"@es ;
     facade:isFacadeOf ifc4owl:IfcProject ;
     facade:hasFacadeField
         :IfcProjectIfc4GlobalIdField ,
@@ -33,9 +34,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "global_id" ;
     schema:name "Global ID"@en ,
-        "Identificador global"@pt-br ;
+        "Identificador global"@pt-br ,
+        "Identificador global"@es ;
     schema:description "The globally unique identifier of the project (IfcRoot.GlobalId)."@en ,
-        "O identificador globalmente único do projeto (IfcRoot.GlobalId)."@pt-br ;
+        "O identificador globalmente único do projeto (IfcRoot.GlobalId)."@pt-br ,
+        "El identificador globalmente único del proyecto (IfcRoot.GlobalId)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 0 ;
     facade:isRequired true ;
@@ -46,9 +49,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "name" ;
     schema:name "Name"@en ,
-        "Nome"@pt-br ;
+        "Nome"@pt-br ,
+        "Nombre"@es ;
     schema:description "The name of the project (IfcRoot.Name)."@en ,
-        "O nome do projeto (IfcRoot.Name)."@pt-br ;
+        "O nome do projeto (IfcRoot.Name)."@pt-br ,
+        "El nombre del proyecto (IfcRoot.Name)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 1 ;
     facade:isRequired true ;
@@ -59,9 +64,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "description" ;
     schema:name "Description"@en ,
-        "Descrição"@pt-br ;
+        "Descrição"@pt-br ,
+        "Descripción"@es ;
     schema:description "The description of the project (IfcRoot.Description)."@en ,
-        "A descrição do projeto (IfcRoot.Description)."@pt-br ;
+        "A descrição do projeto (IfcRoot.Description)."@pt-br ,
+        "La descripción del proyecto (IfcRoot.Description)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 2 ;
     facade:isRequired false ;
@@ -76,7 +83,8 @@
     rdf:type facade:DataEntityFacade ;
     schema:identifier "ifc_project" ;
     schema:name "IFC Project"@en ,
-        "Projeto IFC"@pt-br ;
+        "Projeto IFC"@pt-br ,
+        "Proyecto IFC"@es ;
     facade:isFacadeOf ifc43owl:IfcProject ;
     facade:hasFacadeField
         :IfcProjectIfc43GlobalIdField ,
@@ -87,9 +95,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "global_id" ;
     schema:name "Global ID"@en ,
-        "Identificador global"@pt-br ;
+        "Identificador global"@pt-br ,
+        "Identificador global"@es ;
     schema:description "The globally unique identifier of the project (IfcRoot.GlobalId)."@en ,
-        "O identificador globalmente único do projeto (IfcRoot.GlobalId)."@pt-br ;
+        "O identificador globalmente único do projeto (IfcRoot.GlobalId)."@pt-br ,
+        "El identificador globalmente único del proyecto (IfcRoot.GlobalId)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 0 ;
     facade:isRequired true ;
@@ -100,9 +110,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "name" ;
     schema:name "Name"@en ,
-        "Nome"@pt-br ;
+        "Nome"@pt-br ,
+        "Nombre"@es ;
     schema:description "The name of the project (IfcRoot.Name)."@en ,
-        "O nome do projeto (IfcRoot.Name)."@pt-br ;
+        "O nome do projeto (IfcRoot.Name)."@pt-br ,
+        "El nombre del proyecto (IfcRoot.Name)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 1 ;
     facade:isRequired true ;
@@ -113,9 +125,11 @@
     rdf:type facade:FacadeField ;
     schema:identifier "description" ;
     schema:name "Description"@en ,
-        "Descrição"@pt-br ;
+        "Descrição"@pt-br ,
+        "Descripción"@es ;
     schema:description "The description of the project (IfcRoot.Description)."@en ,
-        "A descrição do projeto (IfcRoot.Description)."@pt-br ;
+        "A descrição do projeto (IfcRoot.Description)."@pt-br ,
+        "La descripción del proyecto (IfcRoot.Description)."@es ;
     facade:fieldDatatype xsd:string ;
     facade:fieldOrder 2 ;
     facade:isRequired false ;

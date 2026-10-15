@@ -189,12 +189,19 @@
 
 :DatasetFacade
     rdf:type :DataEntityFacade ;
+    schema:identifier "dataset" ;
+    schema:name "Dataset"@en ,
+        "Dataset"@pt-br ,
+        "Dataset"@es ;
     :isFacadeOf obdc:EntityDataset ;
     :hasFacadeField :DatasetTitleField .
 
 :DatasetTitleField
     rdf:type :FacadeField ;
     schema:identifier "title" ;
+    schema:name "Title"@en ,
+        "Título"@pt-br ,
+        "Título"@es ;
     :fieldDatatype xsd:string ;
     :fieldOrder 0 ;
     :isRequired true ;
