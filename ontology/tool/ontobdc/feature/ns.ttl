@@ -9,6 +9,7 @@
 @prefix sioc: <http://rdfs.org/sioc/ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @base <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#> .
 
 <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl> rdf:type owl:Ontology ;
@@ -36,10 +37,25 @@
                                sem:Actor, prov:SoftwareAgent .
 
 
+###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#MessageParameter
+:MessageParameter rdf:type owl:Class ;
+                  rdfs:subClassOf dul:Parameter .
+
+
 ###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#PresentationEvent
 :PresentationEvent rdf:type owl:Class ;
                    rdfs:subClassOf ewe:Event ,
                                    sem:Event .
+
+
+#################################################################
+#    Datatype Properties
+#################################################################
+
+###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#parameterName
+:parameterName rdf:type owl:DatatypeProperty ;
+               rdfs:domain :MessageParameter ;
+               rdfs:range xsd:string .
 
 
 ###  http://gsi.upm.es/ontologies/ewe/ns#Channel

@@ -169,4 +169,144 @@ sioc:UserAccount rdf:type owl:Class .
                        :InitialMobileBrowserPresentationContext .
 
 
+# Project opened event ------------------------------------------------------
+
+:ProjectOpenedEvent rdf:type owl:NamedIndividual ,
+                             feat:PresentationEvent ,
+                             sioc:Container ;
+                    dcterms:identifier "presentation.project.opened" ;
+                    sioc:has_subscriber :AssistantTab .
+
+:WithDescription a dul:Concept .
+
+:WithoutDescription a dul:Concept .
+
+:ProjectOpenedDesktopBrowserWithDescriptionContext a dul:Situation ;
+    dul:isClassifiedBy :Desktop , :Browser , :WithDescription ;
+    dul:isSettingFor :ProjectOpenedDesktopBrowserWithDescriptionConversation .
+
+:ProjectOpenedDesktopBrowserWithoutDescriptionContext a dul:Situation ;
+    dul:isClassifiedBy :Desktop , :Browser , :WithoutDescription ;
+    dul:isSettingFor :ProjectOpenedDesktopBrowserWithoutDescriptionConversation .
+
+:ProjectOpenedMobileBrowserWithDescriptionContext a dul:Situation ;
+    dul:isClassifiedBy :Mobile , :Browser , :WithDescription ;
+    dul:isSettingFor :ProjectOpenedMobileBrowserWithDescriptionConversation .
+
+:ProjectOpenedMobileBrowserWithoutDescriptionContext a dul:Situation ;
+    dul:isClassifiedBy :Mobile , :Browser , :WithoutDescription ;
+    dul:isSettingFor :ProjectOpenedMobileBrowserWithoutDescriptionConversation .
+
+:ProjectOpenedDesktopBrowserWithDescriptionConversation a convo:Conversation, co:List ;
+    co:firstItem :ProjectOpenedDesktopBrowserWithDescriptionTitleMessage ;
+    dul:hasSetting :ProjectOpenedDesktopBrowserWithDescriptionContext .
+
+:ProjectOpenedDesktopBrowserWithoutDescriptionConversation a convo:Conversation, co:List ;
+    co:firstItem :ProjectOpenedDesktopBrowserWithoutDescriptionTitleMessage ;
+    dul:hasSetting :ProjectOpenedDesktopBrowserWithoutDescriptionContext .
+
+:ProjectOpenedMobileBrowserWithDescriptionConversation a convo:Conversation, co:List ;
+    co:firstItem :ProjectOpenedMobileBrowserWithDescriptionTitleMessage ;
+    dul:hasSetting :ProjectOpenedMobileBrowserWithDescriptionContext .
+
+:ProjectOpenedMobileBrowserWithoutDescriptionConversation a convo:Conversation, co:List ;
+    co:firstItem :ProjectOpenedMobileBrowserWithoutDescriptionTitleMessage ;
+    dul:hasSetting :ProjectOpenedMobileBrowserWithoutDescriptionContext .
+
+:ProjectAccessParam a feat:MessageParameter ;
+    feat:parameterName "access" .
+
+:ProjectNameParam a feat:MessageParameter ;
+    feat:parameterName "name" .
+
+:ProjectDescriptionParam a feat:MessageParameter ;
+    feat:parameterName "description" .
+
+:ProjectOpenedDesktopBrowserWithDescriptionTitleMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedDesktopBrowserWithDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 1 ;
+    dul:hasParameter :ProjectAccessParam , :ProjectNameParam ;
+    convo:text "O projeto {access} {name} foi aberto no seu navegador."@pt-BR ,
+               "The {access} project {name} has been opened in your browser."@en ,
+               "El proyecto {access} {name} se ha abierto en tu navegador."@es .
+
+:ProjectOpenedDesktopBrowserWithDescriptionMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedDesktopBrowserWithDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 2 ;
+    dul:hasParameter :ProjectDescriptionParam ;
+    convo:text "**Descrição**\n{description}"@pt-BR ,
+               "**Description**\n{description}"@en ,
+               "**Descripción**\n{description}"@es .
+
+:ProjectOpenedDesktopBrowserWithoutDescriptionTitleMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedDesktopBrowserWithoutDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 1 ;
+    dul:hasParameter :ProjectAccessParam , :ProjectNameParam ;
+    convo:text "O projeto {access} {name} foi aberto no seu navegador."@pt-BR ,
+               "The {access} project {name} has been opened in your browser."@en ,
+               "El proyecto {access} {name} se ha abierto en tu navegador."@es .
+
+:ProjectOpenedDesktopBrowserWithoutDescriptionMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedDesktopBrowserWithoutDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 2 ;
+    convo:text "Não há descrição associada a este projeto."@pt-BR ,
+               "There is no description associated with this project."@en ,
+               "No hay una descripción asociada a este proyecto."@es .
+
+:ProjectOpenedMobileBrowserWithDescriptionTitleMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedMobileBrowserWithDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 1 ;
+    dul:hasParameter :ProjectAccessParam , :ProjectNameParam ;
+    convo:text "O projeto {access} {name} foi aberto no seu navegador."@pt-BR ,
+               "The {access} project {name} has been opened in your browser."@en ,
+               "El proyecto {access} {name} se ha abierto en tu navegador."@es .
+
+:ProjectOpenedMobileBrowserWithDescriptionMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedMobileBrowserWithDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 2 ;
+    dul:hasParameter :ProjectDescriptionParam ;
+    convo:text "**Descrição**\n{description}"@pt-BR ,
+               "**Description**\n{description}"@en ,
+               "**Descripción**\n{description}"@es .
+
+:ProjectOpenedMobileBrowserWithoutDescriptionTitleMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedMobileBrowserWithoutDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 1 ;
+    dul:hasParameter :ProjectAccessParam , :ProjectNameParam ;
+    convo:text "O projeto {access} {name} foi aberto no seu navegador."@pt-BR ,
+               "The {access} project {name} has been opened in your browser."@en ,
+               "El proyecto {access} {name} se ha abierto en tu navegador."@es .
+
+:ProjectOpenedMobileBrowserWithoutDescriptionMessage a co:ListItem, convo:Message ;
+    convo:inThread :OnProjectOpened ;
+    convo:contributionOf :ProjectOpenedMobileBrowserWithoutDescriptionConversation ;
+    convo:authoredBy :AssistantTab ;
+    co:index 2 ;
+    convo:text "Não há descrição associada a este projeto."@pt-BR ,
+               "There is no description associated with this project."@en ,
+               "No hay una descripción asociada a este proyecto."@es .
+
+:OnProjectOpened a ewe:Rule, convo:Thread ;
+    ewe:triggeredBy :ProjectOpenedEvent ;
+    ewe:uses :DigitalDockPresentation ;
+    dul:associatedWith :ProjectOpenedDesktopBrowserWithDescriptionContext ,
+                       :ProjectOpenedDesktopBrowserWithoutDescriptionContext ,
+                       :ProjectOpenedMobileBrowserWithDescriptionContext ,
+                       :ProjectOpenedMobileBrowserWithoutDescriptionContext .
+
+
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
