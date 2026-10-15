@@ -2,20 +2,17 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Any, Iterator
+from typing import Any
 
-from importlib.resources.abc import Traversable
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD, Namespace
 from rdflib.util import guess_format
 
-from brasidatacenter.resources import iter_ontology_files, ontology_root
+from brasidatacenter.resources import iter_ontology_files
 
 _FACADE = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#")
 _SCHEMA = Namespace("https://schema.org/")
 _DATA_ENTITY = URIRef("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataEntity")
-_TBOX_SEGMENT = "/tool/ontobdc/"
 
 
 def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str, Any]] | None:
@@ -29,7 +26,7 @@ def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str,
 
     With ``entity_id``, return the facade this package publishes for that
     entity IRI: its identifier, display name, and declared fields. Scans
-    every ``tool/ontobdc/`` ontology this package ships for a
+    every ontology this package ships for a
     ``facade:DataEntityFacade`` whose ``facade:isFacadeOf`` is ``entity_id``.
     Returns ``None`` when no ontology publishes one.
 
@@ -42,7 +39,7 @@ def entity_info(entity_id: str | None = None) -> dict[str, Any] | list[dict[str,
             for entity_iri in _data_entity_types()
         ]
 
-    for ontology_file in _tbox_ontology_files():
+    for ontology_file in iter_ontology_files():
         graph = Graph()
         graph.parse(str(ontology_file), format=guess_format(str(ontology_file)))
         subject = _facade_of(graph, entity_id)
@@ -76,14 +73,6 @@ def _data_entity_types() -> list[str]:
 
 def _local_name(iri: URIRef) -> str:
     return str(iri).rsplit("#", 1)[-1].rsplit("/", 1)[-1]
-
-
-def _tbox_ontology_files() -> Iterator[Traversable]:
-    root = Path(str(ontology_root()))
-    for ontology_file in iter_ontology_files():
-        relative = Path(str(ontology_file)).relative_to(root).as_posix()
-        if _TBOX_SEGMENT in f"/{relative}":
-            yield ontology_file
 
 
 def _facade_of(graph: Graph, entity_iri: str) -> URIRef | None:

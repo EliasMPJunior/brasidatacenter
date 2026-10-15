@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+
+- The annotation facade moved from `tool/ontobdc/facade/annotation.ttl` to `domain/annotation/taxonomy/facade.ttl`, and now declares `domain/annotation/taxonomy/facade.ttl` as its IRI.
+
 ### Removed
 
 - The `Classification` and `Record` annotation types from `domain/annotation/taxonomy/type.ttl`: an annotation is now a Note, an Issue, a Question or a Location.

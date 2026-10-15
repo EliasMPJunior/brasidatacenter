@@ -1,4 +1,4 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/tbox/annotation_facade.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/domain/annotation/taxonomy/facade.ttl#> .
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -8,7 +8,7 @@
 @prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/tbox/annotation_facade.ttl>
+<http://datacenter.app.br/ontology/domain/annotation/taxonomy/facade.ttl>
     rdf:type owl:Ontology ;
     schema:name "Annotation Facade"@en ,
         "Fachada de Anotação"@pt-br ,
@@ -33,6 +33,7 @@
         :SourceDocumentField ,
         :AuthorField ,
         :CreatedAtField ,
+        :CompletedAtField ,
         :RelatedDocumentsField .
 
 :GlobalIdField
@@ -140,6 +141,21 @@
     facade:isMultivalued false ;
     facade:mapsToResource dcterms:created .
 
+:CompletedAtField
+    rdf:type facade:FacadeField ;
+    schema:identifier "completed_at" ;
+    schema:name "Completed at"@en ,
+        "Data de conclusão"@pt-br ,
+        "Fecha de finalización"@es ;
+    schema:description "The date and time the annotation was completed. Absent while it remains open."@en ,
+        "Data e hora em que a anotação foi concluída. Ausente enquanto estiver em aberto."@pt-br ,
+        "Fecha y hora en que se completó la anotación. Ausente mientras permanece abierta."@es ;
+    facade:fieldDatatype xsd:dateTime ;
+    facade:fieldOrder 8 ;
+    facade:isRequired false ;
+    facade:isMultivalued false ;
+    facade:mapsToResource annotation:completedAt .
+
 :RelatedDocumentsField
     rdf:type facade:FacadeField ;
     schema:identifier "related_documents" ;
@@ -150,7 +166,7 @@
         "Os IRIs, no grafo do container, dos outros documentos a que a anotação se refere, separados por uma barra vertical. O documento sobre o qual foi feita é o documento de origem, e não um destes."@pt-br ,
         "Los IRI, en el grafo del contenedor, de los otros documentos a los que se refiere la anotación, separados por una barra vertical. El documento sobre el que se realizó es el documento de origen, no uno de estos."@es ;
     facade:fieldDatatype xsd:anyURI ;
-    facade:fieldOrder 8 ;
+    facade:fieldOrder 9 ;
     facade:isRequired false ;
     facade:isMultivalued true ;
     facade:mapsToResource dcterms:relation .
