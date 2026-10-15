@@ -1,0 +1,31 @@
+@prefix : <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix ct: <http://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://ontobdc.org/ontology/domain/ontobdc/ns.ttl>
+    rdf:type owl:Ontology .
+
+:DataEntity rdf:type owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Data entity"@en ;
+    rdfs:comment "An individual data entity or resource."@en .
+
+:EntityDataset rdf:type owl:Class ;
+    rdfs:subClassOf ct:Folder , dcat:Dataset ;
+    rdfs:label "Entity dataset"@en ;
+    rdfs:comment "A dataset representing a collection of related data entities."@en .
+
+:SurfaceableEntity rdf:type owl:Class ;
+    rdfs:label "Surfaceable entity"@en ;
+    rdfs:comment "Marks an entity class whose instances are eligible for a direct representation on a presentation surface."@en .
+
+:hasDataEntity rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:hadMember ;
+    rdfs:domain :EntityDataset ;
+    rdfs:range :DataEntity ;
+    rdfs:label "Has data entity"@en ;
+    rdfs:comment "The dataset contains the specific data entity."@en .
