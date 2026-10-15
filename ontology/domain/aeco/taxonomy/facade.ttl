@@ -20,6 +20,7 @@
 
 :IfcProjectIfc4Facade
     rdf:type facade:DataEntityFacade ;
+    facade:isDeletable false ;
     schema:identifier "ifc_project" ;
     schema:name "IFC Project"@en ,
         "Projeto IFC"@pt-br ,
@@ -83,6 +84,7 @@
 
 :IfcProjectIfc43Facade
     rdf:type facade:DataEntityFacade ;
+    facade:isDeletable false ;
     schema:identifier "ifc_project" ;
     schema:name "IFC Project"@en ,
         "Projeto IFC"@pt-br ,

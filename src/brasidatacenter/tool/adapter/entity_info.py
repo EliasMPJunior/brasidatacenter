@@ -95,6 +95,7 @@ def _read(graph: Graph, subject: URIRef, entity_iri: str) -> dict[str, Any]:
         "identifier": _required_text(graph, subject, _SCHEMA.identifier),
         "name": _label(graph, subject),
         "labels": _labels(graph, subject),
+        "deletable": _deletable(graph, subject),
         "entity_iri": entity_iri,
         "fields": sorted(fields, key=lambda declared: declared["order"]),
     }
@@ -222,6 +223,14 @@ def _find_all(subject: URIRef, predicate: URIRef) -> list[Any]:
 def _find(subject: URIRef, predicate: URIRef) -> Any | None:
     values = _find_all(subject, predicate)
     return values[0] if values else None
+
+
+def _deletable(graph: Graph, subject: URIRef) -> bool:
+    """An instance can be deleted when the facade says so; a facade that does not say so forbids it."""
+    if graph.value(subject, _FACADE.isDeletable) is None:
+        return False
+
+    return _flag(graph, subject, _FACADE.isDeletable)
 
 
 def _editable(graph: Graph, subject: URIRef) -> bool:

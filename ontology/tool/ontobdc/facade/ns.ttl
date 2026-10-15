@@ -152,6 +152,16 @@
     skos:definition "Whether a facade field may hold more than one value."@en ,
         "Se um campo de fachada pode conter mais de um valor."@pt-br .
 
+:isDeletable rdf:type owl:DatatypeProperty ;
+    rdfs:domain :DataEntityFacade ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is deletable"@en ,
+        "é apagável"@pt-br ,
+        "es eliminable"@es ;
+    skos:definition "Whether an instance of the entity the facade projects can be deleted by a user. A facade that does not declare it describes an entity whose instances cannot be deleted."@en ,
+        "Se uma instância da entidade que a fachada projeta pode ser apagada por um usuário. Uma fachada que não o declara descreve uma entidade cujas instâncias não podem ser apagadas."@pt-br ,
+        "Si una instancia de la entidad que proyecta la fachada puede ser eliminada por un usuario. Una fachada que no lo declara describe una entidad cuyas instancias no pueden eliminarse."@es .
+
 :isEditable rdf:type owl:DatatypeProperty ;
     rdfs:domain :FacadeField ;
     rdfs:range xsd:boolean ;
@@ -178,6 +188,11 @@
             sh:path :hasFacadeField ;
             sh:minCount 1 ;
             sh:class :FacadeField
+        ] ,
+        [
+            sh:path :isDeletable ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:boolean
         ] .
 
 :FacadeFieldShape

@@ -21,6 +21,7 @@
 
 :AnnotationFacade
     rdf:type facade:DataEntityFacade ;
+    facade:isDeletable true ;
     schema:identifier "annotation" ;
     schema:name "Annotation"@en ,
         "Anotação"@pt-br ,
