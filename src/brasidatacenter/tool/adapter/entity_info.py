@@ -92,6 +92,7 @@ def _read(graph: Graph, subject: URIRef, entity_iri: str) -> dict[str, Any]:
     return {
         "identifier": _required_text(graph, subject, _SCHEMA.identifier),
         "name": _label(graph, subject),
+        "labels": _labels(graph, subject),
         "entity_iri": entity_iri,
         "fields": sorted(fields, key=lambda declared: declared["order"]),
     }
@@ -110,7 +111,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
 
 
 def _labels(graph: Graph, subject: URIRef) -> dict[str, str]:
-    """The names the facade gives the field, by lower-case language tag."""
+    """The names the facade or one of its fields has, by lower-case language tag."""
     return {
         str(label.language).lower(): str(label)
         for label in graph.objects(subject, _SCHEMA.name)
