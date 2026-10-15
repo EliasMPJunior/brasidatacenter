@@ -1,4 +1,4 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/tbox/data_container_facade.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/facade/data_container.ttl#> .
 @prefix ct: <http://standards.iso.org/iso/21597/-1/ed-1/en/Container#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
@@ -8,7 +8,7 @@
 @prefix schema: <https://schema.org/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/tbox/data_container_facade.ttl>
+<http://datacenter.app.br/ontology/tool/ontobdc/facade/data_container.ttl>
     a owl:Ontology ;
     owl:imports
         <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl>,

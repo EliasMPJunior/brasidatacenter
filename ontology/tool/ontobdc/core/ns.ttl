@@ -25,7 +25,10 @@
 #     dataset points to it with :hasDataEntity. Its dcterms:identifier is its
 #     GlobalId; the subject IRI is not.
 
-<http://ontobdc.org/ontology/domain/ontobdc/ns.ttl> rdf:type owl:Ontology .
+# This file is published at the IRI below. The terms it declares keep the
+# namespace of the OntoBDC core ontology, http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#,
+# which is the one the datasets and the code use.
+<http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl> rdf:type owl:Ontology .
 
 #################################################################
 #    Annotation properties
