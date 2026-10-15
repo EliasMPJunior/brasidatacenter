@@ -2,6 +2,7 @@
 @prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
 @prefix obdc: <http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -139,6 +140,9 @@
         "Criada em"@pt-br ,
         "Creada el"@es ;
     facade:fieldDatatype xsd:dateTime ;
+    csvw:format "M/d/yyyy h:mm a"@en ,
+        "dd/MM/yyyy HH:mm"@pt-br ,
+        "d/M/yyyy H:mm"@es ;
     facade:fieldOrder 7 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
@@ -147,13 +151,16 @@
 :CompletedAtField
     rdf:type facade:FacadeField ;
     schema:identifier "completed_at" ;
-    schema:name "Completed at"@en ,
-        "Data de conclusão"@pt-br ,
-        "Fecha de finalización"@es ;
+    schema:name "Closed at"@en ,
+        "Fechada em"@pt-br ,
+        "Cerrada el"@es ;
     schema:description "The date and time the annotation was completed. Absent while it remains open."@en ,
         "Data e hora em que a anotação foi concluída. Ausente enquanto estiver em aberto."@pt-br ,
         "Fecha y hora en que se completó la anotación. Ausente mientras permanece abierta."@es ;
     facade:fieldDatatype xsd:dateTime ;
+    csvw:format "M/d/yyyy h:mm a"@en ,
+        "dd/MM/yyyy HH:mm"@pt-br ,
+        "d/M/yyyy H:mm"@es ;
     facade:fieldOrder 8 ;
     facade:isRequired false ;
     facade:isMultivalued false ;
