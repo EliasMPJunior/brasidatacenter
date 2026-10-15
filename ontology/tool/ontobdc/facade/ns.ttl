@@ -77,6 +77,16 @@
         "Uma forma de mostrar os valores de um campo de fachada diferente de texto simples, como um carrossel de imagens."@pt-br ,
         "Una forma de mostrar los valores de un campo de fachada distinta del texto simple, como un carrusel de imágenes."@es .
 
+:ImageCarousel rdf:type owl:Class ;
+    rdfs:subClassOf :Visualization , schema:ImageGallery ;
+    rdfs:label "Image carousel"@en ,
+        "Carrossel de imagens"@pt-br ,
+        "Carrusel de imágenes"@es ;
+    skos:definition "A visualization that shows the image files a field points to, one after the other. The files it shows are the ones the photographic file profile accepts."@en ,
+        "Uma visualização que mostra, uma depois da outra, as imagens para as quais um campo aponta. Os arquivos que ela mostra são os que o perfil de arquivos fotográficos aceita."@pt-br ,
+        "Una visualización que muestra, una tras otra, las imágenes a las que apunta un campo. Los archivos que muestra son los que acepta el perfil de archivos fotográficos."@es ;
+    :acceptsFileProfile obdc:PhotographicFile .
+
 :hasAlternativeVisualization rdf:type owl:ObjectProperty ;
     rdfs:domain :FacadeField ;
     rdfs:range :Visualization ;

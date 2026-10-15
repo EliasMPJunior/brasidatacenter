@@ -13,6 +13,7 @@ from brasidatacenter.resources import iter_ontology_files
 _FACADE = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#")
 _SCHEMA = Namespace("https://schema.org/")
 _CSVW = Namespace("http://www.w3.org/ns/csvw#")
+_OBDC = Namespace("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#")
 _DATA_ENTITY = URIRef("http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#DataEntity")
 
 
@@ -108,6 +109,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "multivalued": _flag(graph, subject, _FACADE.isMultivalued),
         "editable": _editable(graph, subject),
         "resource_facade": _resource_facade(graph, subject),
+        "alternative_visualization": _alternative_visualization(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
         "labels": _labels(graph, subject),
         "formats": _formats(graph, subject),
@@ -170,6 +172,56 @@ def _resource_facade(graph: Graph, subject: URIRef) -> dict[str, Any] | None:
             key=lambda declared: declared["order"],
         ),
     }
+
+
+def _alternative_visualization(graph: Graph, subject: URIRef) -> dict[str, Any] | None:
+    """
+    The visualization a field asks for in place of plain text
+    (``facade:hasAlternativeVisualization``) and the files it shows: the MIME
+    types and extensions its file profile accepts. None for a field shown as text.
+
+    The visualization and its profile are described in other ontologies of the
+    package, so they are looked for there.
+    """
+    visualization = graph.value(subject, _FACADE.hasAlternativeVisualization)
+    if not isinstance(visualization, URIRef):
+        return None
+
+    profile = _find(visualization, _FACADE.acceptsFileProfile)
+    accepted: dict[str, list[str]] = {"mime_types": [], "extensions": []}
+    if isinstance(profile, URIRef):
+        accepted = {
+            "mime_types": sorted(str(value) for value in _find_all(profile, _OBDC.acceptedMimeType)),
+            "extensions": sorted(str(value) for value in _find_all(profile, _OBDC.acceptedExtension)),
+        }
+
+    return {
+        "iri": str(visualization),
+        "file_profile": str(profile) if profile is not None else None,
+        "accepts": accepted,
+    }
+
+
+def _find_all(subject: URIRef, predicate: URIRef) -> list[Any]:
+    """
+    What the ontologies say about ``subject`` with ``predicate``. A file is
+    parsed only when its text names both, which is read much faster than the
+    file is parsed.
+    """
+    found: list[Any] = []
+    for ontology_file in iter_ontology_files():
+        text = ontology_file.read_text(encoding="utf-8")
+        if _local_name(subject) in text and _local_name(predicate) in text:
+            graph = Graph()
+            graph.parse(data=text, format=guess_format(str(ontology_file)))
+            found.extend(graph.objects(subject, predicate))
+
+    return found
+
+
+def _find(subject: URIRef, predicate: URIRef) -> Any | None:
+    values = _find_all(subject, predicate)
+    return values[0] if values else None
 
 
 def _editable(graph: Graph, subject: URIRef) -> bool:
