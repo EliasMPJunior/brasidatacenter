@@ -12,8 +12,8 @@
 #
 # Parameters are the single row of the VALUES block below.
 
-PREFIX :        <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#>
-PREFIX feat:    <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#>
+PREFIX :        <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#>
+PREFIX feat:    <http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX ewe:     <http://gsi.upm.es/ontologies/ewe/ns#>
 PREFIX dul:     <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>

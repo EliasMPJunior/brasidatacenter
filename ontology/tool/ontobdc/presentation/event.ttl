@@ -1,21 +1,21 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#> .
 @prefix ewe: <http://gsi.upm.es/ontologies/ewe/ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix feat: <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#> .
+@prefix feat: <http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sioc: <http://rdfs.org/sioc/ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix convo: <https://ontology.inferal.com/modules/conversation/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix co: <http://purl.org/co/> .
-@base <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
+@base <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl> rdf:type owl:Ontology ;
-                                                                   owl:versionIRI <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl/0.1.0> .
+<http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl> rdf:type owl:Ontology ;
+                                                                   owl:versionIRI <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl/0.1.0> .
 
 #################################################################
 #    Annotation properties
@@ -55,19 +55,19 @@ ewe:generatesEvent rdf:type owl:ObjectProperty ;
 #    Classes
 #################################################################
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#DigitalAssistantPanel
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#DigitalAssistantPanel
 feat:DigitalAssistantPanel rdf:type owl:Class .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#DigitalDock
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#DigitalDock
 feat:DigitalDock rdf:type owl:Class .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#OntoAssistant
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#OntoAssistant
 feat:OntoAssistant rdf:type owl:Class .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl#PresentationEvent
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl#PresentationEvent
 feat:PresentationEvent rdf:type owl:Class .
 
 
@@ -91,13 +91,13 @@ sioc:UserAccount rdf:type owl:Class .
 #    Individuals
 #################################################################
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#AIAssistantPanel
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#AIAssistantPanel
 :AIAssistantPanel rdf:type owl:NamedIndividual ,
                             feat:DigitalAssistantPanel ;
                    sioc:container_of :AssistantTab .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#AssistantTab
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#AssistantTab
 :AssistantTab rdf:type owl:NamedIndividual ,
                        feat:OntoAssistant ,
                        sioc:UserAccount ;
@@ -105,13 +105,13 @@ sioc:UserAccount rdf:type owl:Class .
               sioc:subscriber_of :LayoutLoadedEvent .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#DigitalDockPresentation
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#DigitalDockPresentation
 :DigitalDockPresentation rdf:type owl:NamedIndividual ,
                                   feat:DigitalDock ;
                          ewe:generatesEvent :LayoutLoadedEvent .
 
 
-###  http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#LayoutLoadedEvent
+###  http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#LayoutLoadedEvent
 :LayoutLoadedEvent rdf:type owl:NamedIndividual ,
                             feat:PresentationEvent ,
                             sioc:Container ;

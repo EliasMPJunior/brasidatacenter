@@ -1,5 +1,5 @@
 @prefix : <http://datacenter.app.br/ontology/tool/ontobdc/tbox/annotation_facade.ttl#> .
-@prefix facade: <http://ontobdc.org/ontology/domain/facade.ttl#> .
+@prefix facade: <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
 @prefix annotation: <http://datacenter.app.br/ontology/domain/annotation/taxonomy/type.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .

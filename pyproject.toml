@@ -46,7 +46,7 @@ Repository = "https://github.com/Brasidata/brasidatacenter"
 
 [tool.hatch.build.targets.wheel]
 include = ["/src/brasidatacenter", "/ontology"]
-exclude = ["/ontology/tool/ontobdc/feature/reasoner_test.ttl"]
+exclude = ["/ontology/tool/ontobdc/presentation/reasoner_test.ttl"]
 
 # Keep the ontology source tree at repository root while packaging it inside
 # the Python package, so installed consumers can access it via importlib.resources.
@@ -61,7 +61,7 @@ include = [
   "/README.md",
   "/pyproject.toml",
 ]
-exclude = ["/ontology/tool/ontobdc/feature/reasoner_test.ttl"]
+exclude = ["/ontology/tool/ontobdc/presentation/reasoner_test.ttl"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

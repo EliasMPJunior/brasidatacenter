@@ -1,15 +1,15 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/feature/reasoner_test.ttl#> .
-@prefix event: <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/presentation/reasoner_test.ttl#> .
+@prefix event: <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/feature/reasoner_test.ttl>
+<http://datacenter.app.br/ontology/tool/ontobdc/presentation/reasoner_test.ttl>
     a owl:Ontology ;
     owl:imports
-        <http://datacenter.app.br/ontology/tool/ontobdc/feature/ns.ttl> ,
-        <http://datacenter.app.br/ontology/tool/ontobdc/feature/event.ttl> .
+        <http://datacenter.app.br/ontology/tool/ontobdc/presentation/ns.ttl> ,
+        <http://datacenter.app.br/ontology/tool/ontobdc/presentation/event.ttl> .
 
 :CurrentPresentationContext a dul:Situation ;
     dul:isClassifiedBy event:Mobile, event:Browser ;

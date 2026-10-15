@@ -1,15 +1,125 @@
-@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/tbox/facade.ttl#> .
-@prefix facade: <http://ontobdc.org/ontology/domain/facade.ttl#> .
-@prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
+@prefix : <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix obdc: <http://ontobdc.org/ontology/domain/ontobdc/ns.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://datacenter.app.br/ontology/tool/ontobdc/tbox/facade.ttl>
-    rdf:type owl:Ontology .
+<http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl>
+    rdf:type owl:Ontology ;
+    rdfs:label "Facade Ontology"@en ,
+        "Ontologia de Fachadas"@pt-br ;
+    skos:definition "Declares the facade vocabulary (classes and properties that describe a facade), the integrity shapes for facades and facade fields, and the canonical dataset facade."@en ,
+        "Declara o vocabulário de fachadas (classes e propriedades que descrevem uma fachada), as shapes de integridade para fachadas e campos de fachada, e a fachada canônica de dataset."@pt-br .
+
+#################################################################
+#    Facade vocabulary
+#################################################################
+
+:Facade rdf:type owl:Class ;
+    rdfs:label "Facade"@en ,
+        "Fachada"@pt-br ;
+    skos:definition "A public projection of a resource or data entity, exposing named fields that map to graph properties."@en ,
+        "Uma projeção pública de um recurso ou entidade de dados, expondo campos nomeados que mapeiam para propriedades do grafo."@pt-br .
+
+:ResourceFacade rdf:type owl:Class ;
+    rdfs:subClassOf :Facade ;
+    rdfs:label "Resource facade"@en ,
+        "Fachada de recurso"@pt-br ;
+    skos:definition "A facade of an infrastructure resource (such as the storage container) that is not classified as a data entity."@en ,
+        "Uma fachada de um recurso de infraestrutura (como o contêiner de armazenamento) que não é classificado como uma entidade de dados."@pt-br .
+
+:DataEntityFacade rdf:type owl:Class ;
+    rdfs:subClassOf :Facade ;
+    rdfs:label "Data entity facade"@en ,
+        "Fachada de entidade de dados"@pt-br ;
+    skos:definition "A facade of a data entity: the contract between what a user names and what the graph stores."@en ,
+        "Uma fachada de uma entidade de dados: o contrato entre o que um usuário nomeia e o que o grafo armazena."@pt-br .
+
+:FacadeField rdf:type owl:Class ;
+    rdfs:label "Facade field"@en ,
+        "Campo de fachada"@pt-br ;
+    skos:definition "A single field of a facade: the identifier a person types, the label an input shows, and the property the value is written to."@en ,
+        "Um único campo de uma fachada: o identificador que uma pessoa digita, o rótulo que uma entrada mostra e a propriedade na qual o valor é gravado."@pt-br .
+
+:isFacadeOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :Facade ;
+    rdfs:label "is facade of"@en ,
+        "é fachada de"@pt-br ;
+    skos:definition "Links a facade to the resource or data entity it projects."@en ,
+        "Vincula uma fachada ao recurso ou entidade de dados que ela projeta."@pt-br .
+
+:hasFacadeField rdf:type owl:ObjectProperty ;
+    rdfs:domain :Facade ;
+    rdfs:range :FacadeField ;
+    rdfs:label "has facade field"@en ,
+        "tem campo de fachada"@pt-br ;
+    skos:definition "Links a facade to the fields it exposes."@en ,
+        "Vincula uma fachada aos campos que ela expõe."@pt-br .
+
+:hasResourceFacade rdf:type owl:ObjectProperty ;
+    rdfs:range :ResourceFacade ;
+    rdfs:label "has resource facade"@en ,
+        "tem fachada de recurso"@pt-br ;
+    skos:definition "Links a resource to the facade that projects it."@en ,
+        "Vincula um recurso à fachada que o projeta."@pt-br .
+
+:mapsToResource rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:label "maps to resource"@en ,
+        "mapeia para recurso"@pt-br ;
+    skos:definition "The resource property a facade field reads its value from."@en ,
+        "A propriedade do recurso da qual um campo de fachada lê seu valor."@pt-br .
+
+:mapsToProperty rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:label "maps to property"@en ,
+        "mapeia para propriedade"@pt-br ;
+    skos:definition "The graph property a facade field writes its value to."@en ,
+        "A propriedade do grafo na qual um campo de fachada grava seu valor."@pt-br .
+
+:fieldDatatype rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:label "field datatype"@en ,
+        "tipo de dado do campo"@pt-br ;
+    skos:definition "The datatype a facade field expects for its value."@en ,
+        "O tipo de dado que um campo de fachada espera para seu valor."@pt-br .
+
+:fieldOrder rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range xsd:integer ;
+    rdfs:label "field order"@en ,
+        "ordem do campo"@pt-br ;
+    skos:definition "The display order of a facade field, ascending from zero."@en ,
+        "A ordem de exibição de um campo de fachada, crescente a partir de zero."@pt-br .
+
+:isRequired rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is required"@en ,
+        "é obrigatório"@pt-br ;
+    skos:definition "Whether a facade field must have a value."@en ,
+        "Se um campo de fachada deve ter um valor."@pt-br .
+
+:isMultivalued rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is multivalued"@en ,
+        "é multivalorado"@pt-br ;
+    skos:definition "Whether a facade field may hold more than one value."@en ,
+        "Se um campo de fachada pode conter mais de um valor."@pt-br .
+
+:isEditable rdf:type owl:DatatypeProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is editable"@en ,
+        "é editável"@pt-br ;
+    skos:definition "Whether a facade field value can be changed by a user."@en ,
+        "Se o valor de um campo de fachada pode ser alterado por um usuário."@pt-br .
 
 #################################################################
 #    Facade integrity shapes
@@ -17,23 +127,23 @@
 
 :DataEntityFacadeShape
     rdf:type sh:NodeShape ;
-    sh:targetClass facade:DataEntityFacade ;
+    sh:targetClass :DataEntityFacade ;
     sh:property
         [
-            sh:path facade:isFacadeOf ;
+            sh:path :isFacadeOf ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI
         ] ,
         [
-            sh:path facade:hasFacadeField ;
+            sh:path :hasFacadeField ;
             sh:minCount 1 ;
-            sh:class facade:FacadeField
+            sh:class :FacadeField
         ] .
 
 :FacadeFieldShape
     rdf:type sh:NodeShape ;
-    sh:targetClass facade:FacadeField ;
+    sh:targetClass :FacadeField ;
     sh:property
         [
             sh:path schema:identifier ;
@@ -42,32 +152,32 @@
             sh:datatype xsd:string
         ] ,
         [
-            sh:path facade:fieldDatatype ;
+            sh:path :fieldDatatype ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI
         ] ,
         [
-            sh:path facade:fieldOrder ;
+            sh:path :fieldOrder ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:datatype xsd:integer ;
             sh:minInclusive 0
         ] ,
         [
-            sh:path facade:isRequired ;
+            sh:path :isRequired ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:datatype xsd:boolean
         ] ,
         [
-            sh:path facade:isMultivalued ;
+            sh:path :isMultivalued ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:datatype xsd:boolean
         ] ,
         [
-            sh:path facade:mapsToResource ;
+            sh:path :mapsToResource ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI
@@ -78,15 +188,15 @@
 #################################################################
 
 :DatasetFacade
-    rdf:type facade:DataEntityFacade ;
-    facade:isFacadeOf obdc:EntityDataset ;
-    facade:hasFacadeField :DatasetTitleField .
+    rdf:type :DataEntityFacade ;
+    :isFacadeOf obdc:EntityDataset ;
+    :hasFacadeField :DatasetTitleField .
 
 :DatasetTitleField
-    rdf:type facade:FacadeField ;
+    rdf:type :FacadeField ;
     schema:identifier "title" ;
-    facade:fieldDatatype xsd:string ;
-    facade:fieldOrder 0 ;
-    facade:isRequired true ;
-    facade:isMultivalued false ;
-    facade:mapsToResource dcterms:title .
+    :fieldDatatype xsd:string ;
+    :fieldOrder 0 ;
+    :isRequired true ;
+    :isMultivalued false ;
+    :mapsToResource dcterms:title .
