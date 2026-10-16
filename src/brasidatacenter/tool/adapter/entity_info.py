@@ -96,6 +96,7 @@ def _read(graph: Graph, subject: URIRef, entity_iri: str) -> dict[str, Any]:
         "name": _label(graph, subject),
         "labels": _labels(graph, subject),
         "deletable": _deletable(graph, subject),
+        "creatable": _creatable(graph, subject),
         "entity_iri": entity_iri,
         "fields": sorted(fields, key=lambda declared: declared["order"]),
     }
@@ -109,6 +110,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "required": _flag(graph, subject, _FACADE.isRequired),
         "multivalued": _flag(graph, subject, _FACADE.isMultivalued),
         "editable": _editable(graph, subject),
+        "default": _default(graph, subject),
         "resource_facade": _resource_facade(graph, subject),
         "alternative_visualization": _alternative_visualization(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
@@ -231,6 +233,20 @@ def _deletable(graph: Graph, subject: URIRef) -> bool:
         return False
 
     return _flag(graph, subject, _FACADE.isDeletable)
+
+
+def _creatable(graph: Graph, subject: URIRef) -> bool:
+    """An instance can be created when the facade says so; one that does not say so cannot."""
+    if graph.value(subject, _FACADE.isCreatable) is None:
+        return False
+
+    return _flag(graph, subject, _FACADE.isCreatable)
+
+
+def _default(graph: Graph, subject: URIRef) -> str | None:
+    """The IRI of the value generator that gives the field its value on creation, or None."""
+    generator = graph.value(subject, _FACADE.hasDefault)
+    return str(generator) if isinstance(generator, URIRef) else None
 
 
 def _editable(graph: Graph, subject: URIRef) -> bool:
