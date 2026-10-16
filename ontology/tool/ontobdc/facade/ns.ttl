@@ -196,6 +196,16 @@
     skos:definition "The datatype of the values a value generator produces."@en ,
         "O tipo de dado dos valores que um gerador de valor produz."@pt-br .
 
+:hasValuesFromSubclassesOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range owl:Class ;
+    rdfs:label "has values from subclasses of"@en ,
+        "tem valores das subclasses de"@pt-br ,
+        "tiene valores de las subclases de"@es ;
+    skos:definition "The values the field takes are the identifiers (dcterms:identifier) of the direct subclasses of this class, each named by its skos:prefLabel. A field that declares it is chosen from that list."@en ,
+        "Os valores que o campo aceita são os identificadores (dcterms:identifier) das subclasses diretas desta classe, cada uma nomeada por seu skos:prefLabel. Um campo que o declara é escolhido nessa lista."@pt-br ,
+        "Los valores que acepta el campo son los identificadores (dcterms:identifier) de las subclases directas de esta clase, cada una nombrada por su skos:prefLabel. Un campo que lo declara se elige de esa lista."@es .
+
 :hasDefault rdf:type owl:ObjectProperty ;
     rdfs:domain :FacadeField ;
     rdfs:range :ValueGenerator ;
@@ -307,6 +317,11 @@
         ] ,
         [
             sh:path :hasDefault ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI
+        ] ,
+        [
+            sh:path :hasValuesFromSubclassesOf ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI
         ] ,

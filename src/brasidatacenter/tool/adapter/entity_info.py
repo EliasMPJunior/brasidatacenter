@@ -13,6 +13,8 @@ from brasidatacenter.resources import iter_ontology_files
 _FACADE = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#")
 _SCHEMA = Namespace("https://schema.org/")
 _CSVW = Namespace("http://www.w3.org/ns/csvw#")
+_DCTERMS = Namespace("http://purl.org/dc/terms/")
+_SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
 _OBDC = Namespace("http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#")
 _DATA_ENTITY = URIRef("http://datacenter.app.br/ontology/tool/ontobdc/core/ns.ttl#DataEntity")
 
@@ -111,6 +113,7 @@ def _read_field(graph: Graph, subject: URIRef) -> dict[str, Any]:
         "multivalued": _flag(graph, subject, _FACADE.isMultivalued),
         "editable": _editable(graph, subject),
         "default": _default(graph, subject),
+        **_options(graph, subject),
         "resource_facade": _resource_facade(graph, subject),
         "alternative_visualization": _alternative_visualization(graph, subject),
         "maps_to_resource": _required_text(graph, subject, _FACADE.mapsToResource),
@@ -233,6 +236,36 @@ def _deletable(graph: Graph, subject: URIRef) -> bool:
         return False
 
     return _flag(graph, subject, _FACADE.isDeletable)
+
+
+def _options(graph: Graph, subject: URIRef) -> dict[str, Any]:
+    """
+    The values a field is chosen from, when its facade says they are the
+    subclasses of a class: ``options`` has their identifiers and
+    ``option_labels`` their names by lower-case language tag. Empty otherwise.
+    """
+    parent = graph.value(subject, _FACADE.hasValuesFromSubclassesOf)
+    if not isinstance(parent, URIRef):
+        return {"options": [], "option_labels": {}}
+
+    options: dict[str, dict[str, str]] = {}
+    for ontology_file in iter_ontology_files():
+        text = ontology_file.read_text(encoding="utf-8")
+        if "subClassOf" not in text or _local_name(parent) not in text:
+            continue
+        found = Graph()
+        found.parse(data=text, format=guess_format(str(ontology_file)))
+        for child in found.subjects(RDFS.subClassOf, parent):
+            identifier = found.value(child, _DCTERMS.identifier)
+            if not isinstance(identifier, Literal):
+                continue
+            options[str(identifier)] = {
+                str(name.language).lower(): str(name)
+                for name in found.objects(child, _SKOS.prefLabel)
+                if isinstance(name, Literal) and name.language
+            }
+
+    return {"options": sorted(options), "option_labels": options}
 
 
 def _creatable(graph: Graph, subject: URIRef) -> bool:

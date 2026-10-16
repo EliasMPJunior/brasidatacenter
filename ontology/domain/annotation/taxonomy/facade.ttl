@@ -66,6 +66,7 @@
     facade:fieldOrder 1 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:hasValuesFromSubclassesOf annotation:Annotation ;
     facade:mapsToResource rdf:type .
 
 :TitleField
