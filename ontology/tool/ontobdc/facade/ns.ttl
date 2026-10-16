@@ -170,6 +170,73 @@
     skos:definition "Whether a facade field value can be changed by a user. A field that does not declare it is not editable; an entity is editable when at least one of its facade fields is."@en ,
         "Se o valor de um campo de fachada pode ser alterado por um usuário. Um campo que não o declara não é editável; uma entidade é editável quando ao menos um dos campos de sua fachada é."@pt-br .
 
+:isCreatable rdf:type owl:DatatypeProperty ;
+    rdfs:domain :DataEntityFacade ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is creatable"@en ,
+        "é criável"@pt-br ,
+        "es creable"@es ;
+    skos:definition "Whether an instance of the entity the facade projects can be created by a user. A facade that does not declare it describes an entity whose instances cannot be created."@en ,
+        "Se uma instância da entidade que a fachada projeta pode ser criada por um usuário. Uma fachada que não o declara descreve uma entidade cujas instâncias não podem ser criadas."@pt-br ,
+        "Si una instancia de la entidad que proyecta la fachada puede ser creada por un usuario. Una fachada que no lo declara describe una entidad cuyas instancias no pueden crearse."@es .
+
+:ValueGenerator rdf:type owl:Class ;
+    rdfs:label "value generator"@en ,
+        "gerador de valor"@pt-br ,
+        "generador de valor"@es ;
+    skos:definition "A way of producing a value for a field when an instance is created and none was given. It is a concept: what runs it is the system that creates the instance."@en ,
+        "Uma forma de produzir o valor de um campo quando uma instância é criada e nenhum foi informado. É um conceito: quem o executa é o sistema que cria a instância."@pt-br ,
+        "Una forma de producir el valor de un campo cuando se crea una instancia y no se dio ninguno. Es un concepto: quien lo ejecuta es el sistema que crea la instancia."@es .
+
+:generatesDatatype rdf:type owl:ObjectProperty ;
+    rdfs:domain :ValueGenerator ;
+    rdfs:range rdfs:Datatype ;
+    rdfs:label "generates datatype"@en ,
+        "gera o tipo de dado"@pt-br ;
+    skos:definition "The datatype of the values a value generator produces."@en ,
+        "O tipo de dado dos valores que um gerador de valor produz."@pt-br .
+
+:hasValuesFromSubclassesOf rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range owl:Class ;
+    rdfs:label "has values from subclasses of"@en ,
+        "tem valores das subclasses de"@pt-br ,
+        "tiene valores de las subclases de"@es ;
+    skos:definition "The values the field takes are the identifiers (dcterms:identifier) of the direct subclasses of this class, each named by its skos:prefLabel. A field that declares it is chosen from that list."@en ,
+        "Os valores que o campo aceita são os identificadores (dcterms:identifier) das subclasses diretas desta classe, cada uma nomeada por seu skos:prefLabel. Um campo que o declara é escolhido nessa lista."@pt-br ,
+        "Los valores que acepta el campo son los identificadores (dcterms:identifier) de las subclases directas de esta clase, cada una nombrada por su skos:prefLabel. Un campo que lo declara se elige de esa lista."@es .
+
+:hasDefault rdf:type owl:ObjectProperty ;
+    rdfs:domain :FacadeField ;
+    rdfs:range :ValueGenerator ;
+    rdfs:label "has default"@en ,
+        "tem padrão"@pt-br ,
+        "tiene valor predeterminado"@es ;
+    skos:definition "The value generator that gives a facade field its value when an instance is created and the value was not given. A given value always prevails; editing an instance never uses it. A field that is required and has a default does not have to be given."@en ,
+        "O gerador de valor que dá a um campo de fachada o seu valor quando uma instância é criada e o valor não foi informado. Um valor informado sempre prevalece; editar uma instância nunca o usa. Um campo obrigatório que tem padrão não precisa ser informado."@pt-br ,
+        "El generador de valor que da a un campo de fachada su valor cuando se crea una instancia y no se informó. Un valor informado siempre prevalece; editar una instancia nunca lo usa. Un campo obligatorio que tiene valor predeterminado no necesita informarse."@es .
+
+:UuidGenerator rdf:type :ValueGenerator ;
+    rdfs:label "UUID generator"@en ,
+        "gerador de UUID"@pt-br ,
+        "generador de UUID"@es ;
+    skos:definition "Produces a random universally unique identifier (RFC 4122, version 4), written as text."@en ,
+        "Produz um identificador único universal aleatório (RFC 4122, versão 4), escrito como texto."@pt-br ;
+    :generatesDatatype xsd:string ;
+    rdfs:seeAlso <https://www.rfc-editor.org/rfc/rfc4122> ,
+        <https://www.w3.org/TR/sparql11-query/#func-struuid> ;
+    skos:closeMatch <https://www.w3.org/TR/sparql11-query/#func-uuid> .
+
+:CurrentDateTimeGenerator rdf:type :ValueGenerator ;
+    rdfs:label "current date and time generator"@en ,
+        "gerador de data e hora atual"@pt-br ,
+        "generador de fecha y hora actual"@es ;
+    skos:definition "Produces the date and time of the moment the instance is created."@en ,
+        "Produz a data e a hora do momento em que a instância é criada."@pt-br ;
+    :generatesDatatype xsd:dateTime ;
+    rdfs:seeAlso <https://www.w3.org/TR/sparql11-query/#func-now> ;
+    skos:closeMatch <http://www.w3.org/2005/xpath-functions#current-dateTime> .
+
 #################################################################
 #    Facade integrity shapes
 #################################################################
@@ -191,6 +258,11 @@
         ] ,
         [
             sh:path :isDeletable ;
+            sh:maxCount 1 ;
+            sh:datatype xsd:boolean
+        ] ,
+        [
+            sh:path :isCreatable ;
             sh:maxCount 1 ;
             sh:datatype xsd:boolean
         ] .
@@ -244,11 +316,34 @@
             sh:datatype xsd:boolean
         ] ,
         [
+            sh:path :hasDefault ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI
+        ] ,
+        [
+            sh:path :hasValuesFromSubclassesOf ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI
+        ] ,
+        [
             sh:path :mapsToResource ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI
-        ] .
+        ] ;
+    sh:sparql [
+        rdf:type sh:SPARQLConstraint ;
+        sh:message "The value generator of the default produces a datatype other than the datatype of the field."@en ;
+        sh:select """
+            SELECT $this ?value
+            WHERE {
+                $this <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#hasDefault> ?value .
+                ?value <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#generatesDatatype> ?generated .
+                $this <http://datacenter.app.br/ontology/tool/ontobdc/facade/ns.ttl#fieldDatatype> ?declared .
+                FILTER (?generated != ?declared)
+            }
+        """
+    ] .
 
 #################################################################
 #    Canonical dataset facade

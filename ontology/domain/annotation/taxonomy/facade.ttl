@@ -22,6 +22,7 @@
 :AnnotationFacade
     rdf:type facade:DataEntityFacade ;
     facade:isDeletable true ;
+    facade:isCreatable true ;
     schema:identifier "annotation" ;
     schema:name "Annotation"@en ,
         "Anotação"@pt-br ,
@@ -49,6 +50,7 @@
     facade:fieldOrder 0 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:hasDefault facade:UuidGenerator ;
     facade:mapsToResource dcterms:identifier .
 
 :AnnotationTypeField
@@ -64,6 +66,7 @@
     facade:fieldOrder 1 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:hasValuesFromSubclassesOf annotation:Annotation ;
     facade:mapsToResource rdf:type .
 
 :TitleField
@@ -147,6 +150,7 @@
     facade:fieldOrder 7 ;
     facade:isRequired true ;
     facade:isMultivalued false ;
+    facade:hasDefault facade:CurrentDateTimeGenerator ;
     facade:mapsToResource dcterms:created .
 
 :CompletedAtField
@@ -181,6 +185,7 @@
     facade:fieldOrder 9 ;
     facade:isRequired false ;
     facade:isMultivalued true ;
+    facade:isEditable true ;
     facade:mapsToResource dcterms:relation ;
     facade:hasResourceFacade :RelatedDocumentFacade ;
     facade:hasAlternativeVisualization facade:ImageCarousel .
