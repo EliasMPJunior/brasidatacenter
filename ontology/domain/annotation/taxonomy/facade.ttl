@@ -185,6 +185,7 @@
     facade:fieldOrder 9 ;
     facade:isRequired false ;
     facade:isMultivalued true ;
+    facade:isEditable true ;
     facade:mapsToResource dcterms:relation ;
     facade:hasResourceFacade :RelatedDocumentFacade ;
     facade:hasAlternativeVisualization facade:ImageCarousel .
